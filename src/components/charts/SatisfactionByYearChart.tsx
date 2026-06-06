@@ -16,6 +16,13 @@ import {
   ChartTooltipContent,
   type ChartConfig,
 } from '@/components/ui/chart'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 
 const YEAR_COLORS = [
   'var(--chart-1)',
@@ -24,6 +31,8 @@ const YEAR_COLORS = [
   'var(--chart-4)',
   'var(--chart-5)',
 ]
+
+const ALL = 'all'
 
 export function SatisfactionByYearChart({ data }: { data: SatisfactionYearRow[] }) {
   const years = React.useMemo(
@@ -39,47 +48,33 @@ export function SatisfactionByYearChart({ data }: { data: SatisfactionYearRow[] 
     return c
   }, [years])
 
-  const averages = React.useMemo(() => {
-    const out: Record<string, number> = {}
-    for (const y of years) {
-      const vals = data
-        .map((r) => r[y])
-        .filter((v): v is number => typeof v === 'number')
-      out[y] = vals.length
-        ? Number((vals.reduce((a, b) => a + b, 0) / vals.length).toFixed(1))
-        : 0
-    }
-    return out
-  }, [years, data])
+  const [selectedYear, setSelectedYear] = React.useState<string>(ALL)
+
+  const visibleYears =
+    selectedYear === ALL ? years : years.filter((y) => y === selectedYear)
 
   return (
     <Card className="py-4 sm:py-0">
-      <CardHeader className="flex flex-col items-stretch border-b p-0! sm:flex-row">
-        <div className="flex flex-1 flex-col justify-center gap-1 px-6 pb-3 sm:pb-0">
+      <CardHeader className="flex flex-col items-stretch gap-3 border-b p-4 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+        <div className="flex flex-col gap-1">
           <CardTitle>Zufriedenheitstrend</CardTitle>
           <CardDescription>
             Durchschnittliche Zufriedenheit pro Monat im Jahresvergleich
           </CardDescription>
         </div>
-        <div className="flex">
-          {years.map((year, i) => (
-            <div
-              key={year}
-              className="flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-left even:border-l sm:border-t-0 sm:border-l sm:px-8 sm:py-6"
-            >
-              <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                <span
-                  className="size-2 rounded-[2px]"
-                  style={{ backgroundColor: YEAR_COLORS[i % YEAR_COLORS.length] }}
-                />
-                {year}
-              </span>
-              <span className="text-lg leading-none font-bold sm:text-3xl">
-                {averages[year]} / 5
-              </span>
-            </div>
-          ))}
-        </div>
+        <Select value={selectedYear} onValueChange={setSelectedYear}>
+          <SelectTrigger className="w-[160px] sm:ml-auto" aria-label="Jahr auswählen">
+            <SelectValue placeholder="Jahr" />
+          </SelectTrigger>
+          <SelectContent align="end">
+            <SelectItem value={ALL}>Alle Jahre</SelectItem>
+            {years.map((y) => (
+              <SelectItem key={y} value={y}>
+                {y}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </CardHeader>
       <CardContent className="px-2 sm:p-6">
         <ChartContainer config={config} className="aspect-auto h-[250px] w-full">
@@ -98,8 +93,10 @@ export function SatisfactionByYearChart({ data }: { data: SatisfactionYearRow[] 
             />
             <YAxis domain={[0, 5]} width={32} tickLine={false} axisLine={false} />
             <ChartTooltip content={<ChartTooltipContent className="w-[160px]" />} />
-            <ChartLegend content={<ChartLegendContent />} />
-            {years.map((year) => (
+            {visibleYears.length > 1 && (
+              <ChartLegend content={<ChartLegendContent />} />
+            )}
+            {visibleYears.map((year) => (
               <Line
                 key={year}
                 dataKey={year}
