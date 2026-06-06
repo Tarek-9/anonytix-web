@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { CartesianGrid, Line, LineChart, XAxis } from 'recharts'
+import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts'
 import type { SatisfactionYearRow } from '@/lib/types'
 import {
   Card,
@@ -10,6 +10,8 @@ import {
 } from '@/components/ui/card'
 import {
   ChartContainer,
+  ChartLegend,
+  ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
@@ -50,10 +52,6 @@ export function SatisfactionByYearChart({ data }: { data: SatisfactionYearRow[] 
     return out
   }, [years, data])
 
-  const [activeYear, setActiveYear] = React.useState<string>(
-    years[years.length - 1] ?? '',
-  )
-
   return (
     <Card className="py-4 sm:py-0">
       <CardHeader className="flex flex-col items-stretch border-b p-0! sm:flex-row">
@@ -64,19 +62,22 @@ export function SatisfactionByYearChart({ data }: { data: SatisfactionYearRow[] 
           </CardDescription>
         </div>
         <div className="flex">
-          {years.map((year) => (
-            <button
+          {years.map((year, i) => (
+            <div
               key={year}
-              type="button"
-              data-active={activeYear === year}
-              className="flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-left even:border-l data-[active=true]:bg-muted/50 sm:border-t-0 sm:border-l sm:px-8 sm:py-6"
-              onClick={() => setActiveYear(year)}
+              className="flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-left even:border-l sm:border-t-0 sm:border-l sm:px-8 sm:py-6"
             >
-              <span className="text-xs text-muted-foreground">{year}</span>
+              <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                <span
+                  className="size-2 rounded-[2px]"
+                  style={{ backgroundColor: YEAR_COLORS[i % YEAR_COLORS.length] }}
+                />
+                {year}
+              </span>
               <span className="text-lg leading-none font-bold sm:text-3xl">
                 {averages[year]} / 5
               </span>
-            </button>
+            </div>
           ))}
         </div>
       </CardHeader>
@@ -95,23 +96,20 @@ export function SatisfactionByYearChart({ data }: { data: SatisfactionYearRow[] 
               tickMargin={8}
               minTickGap={16}
             />
-            <ChartTooltip
-              content={
-                <ChartTooltipContent
-                  className="w-[160px]"
-                  nameKey={activeYear}
-                  labelFormatter={(value) => `${value} ${activeYear}`}
-                />
-              }
-            />
-            <Line
-              dataKey={activeYear}
-              type="monotone"
-              stroke={`var(--color-${activeYear})`}
-              strokeWidth={2}
-              dot={false}
-              connectNulls={false}
-            />
+            <YAxis domain={[0, 5]} width={32} tickLine={false} axisLine={false} />
+            <ChartTooltip content={<ChartTooltipContent className="w-[160px]" />} />
+            <ChartLegend content={<ChartLegendContent />} />
+            {years.map((year) => (
+              <Line
+                key={year}
+                dataKey={year}
+                type="monotone"
+                stroke={`var(--color-${year})`}
+                strokeWidth={2}
+                dot={false}
+                connectNulls={false}
+              />
+            ))}
           </LineChart>
         </ChartContainer>
       </CardContent>
