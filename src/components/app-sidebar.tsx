@@ -1,10 +1,8 @@
 import * as React from "react"
 import { Link, NavLink, useLocation } from "react-router-dom"
-import {
-  IconClipboardText,
-  IconDashboard,
-  IconShieldLock,
-} from "@tabler/icons-react"
+import { IconClipboardText, IconDashboard, IconSparkles } from "@tabler/icons-react"
+
+import logoFront from "@/assets/logo_icon.png"
 
 import { NavUser } from "@/components/nav-user"
 import {
@@ -22,6 +20,7 @@ import {
 const navMain = [
   { title: "Umfragen", url: "/", icon: IconClipboardText },
   { title: "Dashboard", url: "/dashboard", icon: IconDashboard },
+  { title: "AI-Overview", url: "/ai-overview", icon: IconSparkles },
 ]
 
 const user = {
@@ -39,11 +38,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenuItem>
             <SidebarMenuButton
               asChild
-              className="data-[slot=sidebar-menu-button]:p-1.5!"
+              className="h-auto! data-[slot=sidebar-menu-button]:p-2!"
             >
               <Link to="/">
-                <IconShieldLock className="size-5!" />
-                <span className="text-base font-semibold">Anonytix</span>
+                <img
+                  src={logoFront}
+                  alt="Anonytix"
+                  className="h-20 w-auto object-contain dark:invert"
+                />
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>

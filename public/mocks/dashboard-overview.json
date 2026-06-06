@@ -264,5 +264,499 @@
       "status": "IN_PROGRESS",
       "source": "AI"
     }
+  ],
+  "feedbackByMonth": [
+    {
+      "period": "2026-01",
+      "label": "Januar",
+      "positive": 58,
+      "negative": 30
+    },
+    {
+      "period": "2026-02",
+      "label": "Februar",
+      "positive": 60,
+      "negative": 33
+    },
+    {
+      "period": "2026-03",
+      "label": "März",
+      "positive": 59,
+      "negative": 38
+    },
+    {
+      "period": "2026-04",
+      "label": "April",
+      "positive": 60,
+      "negative": 42
+    },
+    {
+      "period": "2026-05",
+      "label": "Mai",
+      "positive": 70,
+      "negative": 35
+    },
+    {
+      "period": "2026-06",
+      "label": "Juni",
+      "positive": 66,
+      "negative": 45
+    }
+  ],
+  "satisfactionByYear": [
+    {
+      "2024": 3.2,
+      "2025": 3.6,
+      "2026": 3.8,
+      "month": "Jan"
+    },
+    {
+      "2024": 3.3,
+      "2025": 3.7,
+      "2026": 3.7,
+      "month": "Feb"
+    },
+    {
+      "2024": 3.1,
+      "2025": 3.5,
+      "2026": 3.6,
+      "month": "Mär"
+    },
+    {
+      "2024": 3.4,
+      "2025": 3.8,
+      "2026": 3.5,
+      "month": "Apr"
+    },
+    {
+      "2024": 3.5,
+      "2025": 3.9,
+      "2026": 3.8,
+      "month": "Mai"
+    },
+    {
+      "2024": 3.3,
+      "2025": 3.7,
+      "2026": 3.4,
+      "month": "Jun"
+    },
+    {
+      "2024": 3.6,
+      "2025": 4,
+      "2026": null,
+      "month": "Jul"
+    },
+    {
+      "2024": 3.5,
+      "2025": 3.8,
+      "2026": null,
+      "month": "Aug"
+    },
+    {
+      "2024": 3.7,
+      "2025": 3.9,
+      "2026": null,
+      "month": "Sep"
+    },
+    {
+      "2024": 3.6,
+      "2025": 4,
+      "2026": null,
+      "month": "Okt"
+    },
+    {
+      "2024": 3.8,
+      "2025": 4.1,
+      "2026": null,
+      "month": "Nov"
+    },
+    {
+      "2024": 3.7,
+      "2025": 3.9,
+      "2026": null,
+      "month": "Dez"
+    }
+  ],
+  "years": [
+    "2024",
+    "2025",
+    "2026"
+  ],
+  "byYear": {
+    "2024": {
+      "sampleSize": 312,
+      "kpis": [
+        {
+          "key": "OVERALL_SATISFACTION",
+          "label": "Gesamtzufriedenheit",
+          "value": 3.4,
+          "unit": "OUT_OF_5",
+          "change": -0.1,
+          "changeLabel": "ggü. Vorjahr"
+        },
+        {
+          "key": "PARTICIPATION_RATE",
+          "label": "Teilnahmequote",
+          "value": 71,
+          "unit": "PERCENT",
+          "change": 4,
+          "changeLabel": "ggü. Vorjahr"
+        },
+        {
+          "key": "POSITIVE_SENTIMENT",
+          "label": "Positive Stimmung",
+          "value": 48,
+          "unit": "PERCENT",
+          "change": -2,
+          "changeLabel": "ggü. Vorjahr"
+        },
+        {
+          "key": "CRITICAL_TOPICS",
+          "label": "Kritische Themen",
+          "value": 5,
+          "unit": "COUNT",
+          "change": 1,
+          "changeLabel": "kritische Themen"
+        }
+      ],
+      "sentimentDistribution": [
+        {
+          "sentiment": "POSITIVE",
+          "percentage": 48,
+          "count": 150
+        },
+        {
+          "sentiment": "NEUTRAL",
+          "percentage": 20,
+          "count": 62
+        },
+        {
+          "sentiment": "NEGATIVE",
+          "percentage": 32,
+          "count": 100
+        }
+      ],
+      "feedbackByMonth": [
+        {
+          "period": "2024-01",
+          "label": "Jan",
+          "positive": 140,
+          "negative": 90
+        },
+        {
+          "period": "2024-02",
+          "label": "Feb",
+          "positive": 150,
+          "negative": 95
+        },
+        {
+          "period": "2024-03",
+          "label": "Mär",
+          "positive": 138,
+          "negative": 100
+        },
+        {
+          "period": "2024-04",
+          "label": "Apr",
+          "positive": 152,
+          "negative": 98
+        },
+        {
+          "period": "2024-05",
+          "label": "Mai",
+          "positive": 160,
+          "negative": 92
+        },
+        {
+          "period": "2024-06",
+          "label": "Jun",
+          "positive": 148,
+          "negative": 105
+        },
+        {
+          "period": "2024-07",
+          "label": "Jul",
+          "positive": 166,
+          "negative": 88
+        },
+        {
+          "period": "2024-08",
+          "label": "Aug",
+          "positive": 158,
+          "negative": 96
+        },
+        {
+          "period": "2024-09",
+          "label": "Sep",
+          "positive": 172,
+          "negative": 84
+        },
+        {
+          "period": "2024-10",
+          "label": "Okt",
+          "positive": 165,
+          "negative": 90
+        },
+        {
+          "period": "2024-11",
+          "label": "Nov",
+          "positive": 178,
+          "negative": 82
+        },
+        {
+          "period": "2024-12",
+          "label": "Dez",
+          "positive": 170,
+          "negative": 88
+        }
+      ]
+    },
+    "2025": {
+      "sampleSize": 348,
+      "kpis": [
+        {
+          "key": "OVERALL_SATISFACTION",
+          "label": "Gesamtzufriedenheit",
+          "value": 3.8,
+          "unit": "OUT_OF_5",
+          "change": 0.4,
+          "changeLabel": "ggü. Vorjahr"
+        },
+        {
+          "key": "PARTICIPATION_RATE",
+          "label": "Teilnahmequote",
+          "value": 80,
+          "unit": "PERCENT",
+          "change": 9,
+          "changeLabel": "ggü. Vorjahr"
+        },
+        {
+          "key": "POSITIVE_SENTIMENT",
+          "label": "Positive Stimmung",
+          "value": 58,
+          "unit": "PERCENT",
+          "change": 10,
+          "changeLabel": "ggü. Vorjahr"
+        },
+        {
+          "key": "CRITICAL_TOPICS",
+          "label": "Kritische Themen",
+          "value": 2,
+          "unit": "COUNT",
+          "change": -3,
+          "changeLabel": "kritische Themen"
+        }
+      ],
+      "sentimentDistribution": [
+        {
+          "sentiment": "POSITIVE",
+          "percentage": 58,
+          "count": 202
+        },
+        {
+          "sentiment": "NEUTRAL",
+          "percentage": 22,
+          "count": 77
+        },
+        {
+          "sentiment": "NEGATIVE",
+          "percentage": 20,
+          "count": 70
+        }
+      ],
+      "feedbackByMonth": [
+        {
+          "period": "2025-01",
+          "label": "Jan",
+          "positive": 168,
+          "negative": 70
+        },
+        {
+          "period": "2025-02",
+          "label": "Feb",
+          "positive": 175,
+          "negative": 72
+        },
+        {
+          "period": "2025-03",
+          "label": "Mär",
+          "positive": 160,
+          "negative": 80
+        },
+        {
+          "period": "2025-04",
+          "label": "Apr",
+          "positive": 182,
+          "negative": 66
+        },
+        {
+          "period": "2025-05",
+          "label": "Mai",
+          "positive": 190,
+          "negative": 60
+        },
+        {
+          "period": "2025-06",
+          "label": "Jun",
+          "positive": 176,
+          "negative": 74
+        },
+        {
+          "period": "2025-07",
+          "label": "Jul",
+          "positive": 200,
+          "negative": 55
+        },
+        {
+          "period": "2025-08",
+          "label": "Aug",
+          "positive": 186,
+          "negative": 68
+        },
+        {
+          "period": "2025-09",
+          "label": "Sep",
+          "positive": 192,
+          "negative": 62
+        },
+        {
+          "period": "2025-10",
+          "label": "Okt",
+          "positive": 198,
+          "negative": 58
+        },
+        {
+          "period": "2025-11",
+          "label": "Nov",
+          "positive": 205,
+          "negative": 52
+        },
+        {
+          "period": "2025-12",
+          "label": "Dez",
+          "positive": 190,
+          "negative": 64
+        }
+      ]
+    },
+    "2026": {
+      "sampleSize": 127,
+      "kpis": [
+        {
+          "key": "OVERALL_SATISFACTION",
+          "label": "Gesamtzufriedenheit",
+          "value": 3.6,
+          "unit": "OUT_OF_5",
+          "change": -0.2,
+          "changeLabel": "ggü. Vorjahr"
+        },
+        {
+          "key": "PARTICIPATION_RATE",
+          "label": "Teilnahmequote",
+          "value": 78,
+          "unit": "PERCENT",
+          "change": -2,
+          "changeLabel": "ggü. Vorjahr"
+        },
+        {
+          "key": "POSITIVE_SENTIMENT",
+          "label": "Positive Stimmung",
+          "value": 54,
+          "unit": "PERCENT",
+          "change": -4,
+          "changeLabel": "ggü. Vorjahr"
+        },
+        {
+          "key": "CRITICAL_TOPICS",
+          "label": "Kritische Themen",
+          "value": 3,
+          "unit": "COUNT",
+          "change": 1,
+          "changeLabel": "kritische Themen"
+        }
+      ],
+      "sentimentDistribution": [
+        {
+          "sentiment": "POSITIVE",
+          "percentage": 54,
+          "count": 69
+        },
+        {
+          "sentiment": "NEUTRAL",
+          "percentage": 15,
+          "count": 19
+        },
+        {
+          "sentiment": "NEGATIVE",
+          "percentage": 31,
+          "count": 39
+        }
+      ],
+      "feedbackByMonth": [
+        {
+          "period": "2026-01",
+          "label": "Jan",
+          "positive": 58,
+          "negative": 30
+        },
+        {
+          "period": "2026-02",
+          "label": "Feb",
+          "positive": 60,
+          "negative": 33
+        },
+        {
+          "period": "2026-03",
+          "label": "Mär",
+          "positive": 59,
+          "negative": 38
+        },
+        {
+          "period": "2026-04",
+          "label": "Apr",
+          "positive": 60,
+          "negative": 42
+        },
+        {
+          "period": "2026-05",
+          "label": "Mai",
+          "positive": 70,
+          "negative": 35
+        },
+        {
+          "period": "2026-06",
+          "label": "Jun",
+          "positive": 66,
+          "negative": 45
+        }
+      ]
+    }
+  },
+  "aiHighlights": [
+    {
+      "id": "h1",
+      "text": "Gesamtzufriedenheit im Juni leicht gesunken (3,4/5)",
+      "sentiment": "NEGATIVE"
+    },
+    {
+      "id": "h2",
+      "text": "Hohe Arbeitsbelastung im Vertrieb — 38 Nennungen, steigend",
+      "sentiment": "NEGATIVE"
+    },
+    {
+      "id": "h3",
+      "text": "Führungskommunikation schlechter bewertet als im Vormonat",
+      "sentiment": "NEGATIVE"
+    },
+    {
+      "id": "h4",
+      "text": "Teamzusammenhalt bleibt ein stabiler Pluspunkt",
+      "sentiment": "POSITIVE"
+    },
+    {
+      "id": "h5",
+      "text": "Teilnahmequote auf 78 % gestiegen (+6 Punkte)",
+      "sentiment": "POSITIVE"
+    }
   ]
 }

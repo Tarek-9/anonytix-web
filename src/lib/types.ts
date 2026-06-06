@@ -127,6 +127,27 @@ export interface TrendPoint {
   sampleSize?: number
 }
 
+export interface MonthlyFeedback {
+  period: string
+  label: string
+  positive: number
+  negative: number
+}
+
+// One row per month; keys "2024"/"2025"/... hold that year's satisfaction score.
+export interface SatisfactionYearRow {
+  month: string
+  [year: string]: number | string | null
+}
+
+// Per-year slice of the dashboard, selectable via the year dropdown.
+export interface YearOverview {
+  sampleSize: number
+  kpis: Kpi[]
+  sentimentDistribution: SentimentSlice[]
+  feedbackByMonth: MonthlyFeedback[]
+}
+
 export interface HeatmapRow {
   departmentId: string
   departmentName: string
@@ -153,6 +174,12 @@ export interface AiSummary {
   disclaimer: string
 }
 
+export interface AiHighlight {
+  id: string
+  text: string
+  sentiment: Sentiment
+}
+
 export interface RecommendedAction {
   id: string
   title: string
@@ -172,9 +199,14 @@ export interface DashboardOverview {
   sentimentDistribution: SentimentSlice[]
   categoryScores: CategoryScore[]
   satisfactionTrend: TrendPoint[]
+  feedbackByMonth?: MonthlyFeedback[]
+  satisfactionByYear?: SatisfactionYearRow[]
+  years?: string[]
+  byYear?: Record<string, YearOverview>
   departmentHeatmap: HeatmapRow[]
   topTopics: TopTopic[]
   aiSummary: AiSummary
+  aiHighlights?: AiHighlight[]
   recommendedActions: RecommendedAction[]
 }
 
