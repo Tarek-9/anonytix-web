@@ -100,16 +100,7 @@ export default function PublicFormPage() {
           )}
         </CardHeader>
         <CardContent className="flex flex-col gap-6">
-          <AnonymityPanel
-            payload={
-              form.selectedDepartmentId
-                ? {
-                    departmentId: form.selectedDepartmentId,
-                    answers: buildAnswerRequests(form.questions, answers),
-                  }
-                : null
-            }
-          />
+          <AnonymityPanel />
           <FormRenderer
             form={form}
             answers={answers}
