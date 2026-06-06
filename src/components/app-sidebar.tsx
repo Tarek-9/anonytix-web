@@ -18,8 +18,8 @@ import {
 } from "@/components/ui/sidebar"
 
 const navMain = [
-  { title: "Surveys", url: "/", icon: IconClipboardText },
   { title: "Dashboard", url: "/dashboard", icon: IconDashboard },
+  { title: "Surveys", url: "/", icon: IconClipboardText },
   { title: "AI Overview", url: "/ai-overview", icon: IconSparkles },
 ]
 
