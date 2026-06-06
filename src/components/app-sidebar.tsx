@@ -2,7 +2,7 @@ import * as React from "react"
 import { Link, NavLink, useLocation } from "react-router-dom"
 import { IconClipboardText, IconDashboard } from "@tabler/icons-react"
 
-import logoFront from "@/assets/logo_front.png"
+import logoFront from "@/assets/logo_icon.png"
 
 import { NavUser } from "@/components/nav-user"
 import {
