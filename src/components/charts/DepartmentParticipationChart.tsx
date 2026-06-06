@@ -25,7 +25,7 @@ export function DepartmentParticipationChart({ rows }: { rows: HeatmapRow[] }) {
     fill: COLORS[i % COLORS.length],
   }))
 
-  const config: ChartConfig = { participants: { label: 'Teilnehmer' } }
+  const config: ChartConfig = { participants: { label: 'Participants' } }
   rows.forEach((r, i) => {
     config[r.departmentName] = {
       label: r.departmentName,
@@ -38,7 +38,7 @@ export function DepartmentParticipationChart({ rows }: { rows: HeatmapRow[] }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Teilnahme nach Abteilung</CardTitle>
+        <CardTitle>Participation by Department</CardTitle>
       </CardHeader>
       <CardContent>
         <ChartContainer config={config} className="mx-auto aspect-square max-h-64">
@@ -52,7 +52,7 @@ export function DepartmentParticipationChart({ rows }: { rows: HeatmapRow[] }) {
           </PieChart>
         </ChartContainer>
         <p className="mt-2 text-center text-sm text-muted-foreground">
-          {total} Teilnehmer insgesamt
+          {total} participants in total
         </p>
       </CardContent>
     </Card>

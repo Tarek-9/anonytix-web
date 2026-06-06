@@ -18,13 +18,13 @@ import {
 } from "@/components/ui/sidebar"
 
 const navMain = [
-  { title: "Umfragen", url: "/", icon: IconClipboardText },
+  { title: "Surveys", url: "/", icon: IconClipboardText },
   { title: "Dashboard", url: "/dashboard", icon: IconDashboard },
-  { title: "AI-Overview", url: "/ai-overview", icon: IconSparkles },
+  { title: "AI Overview", url: "/ai-overview", icon: IconSparkles },
 ]
 
 const user = {
-  name: "HR-Team",
+  name: "HR Team",
   email: "hr@anonytix.example",
   avatar: "",
 }

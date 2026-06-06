@@ -17,6 +17,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
+import { Reveal } from '@/components/motion/Reveal'
+import { IconCircleCheck, IconCheck, IconCopy } from '@tabler/icons-react'
 
 interface PublishState {
   publishedUrl?: string
@@ -45,33 +47,35 @@ export default function SurveysListPage() {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold">Umfragen</h1>
+        <h1 className="font-display text-2xl font-semibold tracking-tight">Surveys</h1>
         <Button onClick={() => navigate('/surveys/new')}>
-          Umfrage erstellen
+          Create survey
         </Button>
       </div>
 
       {!surveys ? (
-        <p className="text-muted-foreground">Lädt …</p>
+        <p className="text-muted-foreground">Loading...</p>
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {surveys.map((s) => (
-            <Card key={s.id}>
-              <CardHeader>
-                <CardTitle className="text-base">{s.title}</CardTitle>
-                <Badge variant={s.status === 'PUBLISHED' ? 'default' : 'secondary'}>
-                  {s.status}
-                </Badge>
-              </CardHeader>
-              <CardContent className="flex gap-2">
-                <Button asChild variant="outline" size="sm">
-                  <Link to={`/surveys/${s.id}`}>Bearbeiten</Link>
-                </Button>
-                <Button asChild size="sm">
-                  <Link to="/dashboard">Ergebnisse</Link>
-                </Button>
-              </CardContent>
-            </Card>
+          {surveys.map((s, i) => (
+            <Reveal key={s.id} index={i} step={50}>
+              <Card className="h-full transition-shadow duration-(--motion-fast) hover:shadow-sm">
+                <CardHeader>
+                  <CardTitle className="text-base">{s.title}</CardTitle>
+                  <Badge variant={s.status === 'PUBLISHED' ? 'default' : 'secondary'}>
+                    {s.status}
+                  </Badge>
+                </CardHeader>
+                <CardContent className="flex gap-2">
+                  <Button asChild variant="outline" size="sm">
+                    <Link to={`/surveys/${s.id}`}>Edit</Link>
+                  </Button>
+                  <Button asChild size="sm">
+                    <Link to="/dashboard">Results</Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            </Reveal>
           ))}
         </div>
       )}
@@ -86,23 +90,38 @@ export default function SurveysListPage() {
         }}
       >
         <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Umfrage veröffentlicht</DialogTitle>
+          <DialogHeader className="items-center text-center sm:text-center">
+            <div className="success-pop mb-1 flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+              <IconCircleCheck className="size-7" />
+            </div>
+            <DialogTitle className="font-display text-xl">
+              Survey published
+            </DialogTitle>
           </DialogHeader>
-          <p className="text-sm text-muted-foreground">
-            Teile diesen einen allgemeinen Link mit den Mitarbeitern:
-          </p>
-          <div className="flex gap-2">
-            <Input readOnly value={link ?? ''} />
-            <Button
-              onClick={() => {
-                if (link) navigator.clipboard.writeText(link)
-                setCopied(true)
-              }}
-            >
-              {copied ? 'Kopiert' : 'Kopieren'}
-            </Button>
-          </div>
+          <Reveal variant="fade" delay={120} className="flex flex-col gap-3">
+            <p className="text-center text-sm text-muted-foreground">
+              Share this single general link with employees:
+            </p>
+            <div className="flex gap-2">
+              <Input readOnly value={link ?? ''} className="font-mono text-xs" />
+              <Button
+                onClick={() => {
+                  if (link) navigator.clipboard.writeText(link)
+                  setCopied(true)
+                }}
+              >
+                {copied ? (
+                  <>
+                    <IconCheck className="size-4" /> Copied
+                  </>
+                ) : (
+                  <>
+                    <IconCopy className="size-4" /> Copy
+                  </>
+                )}
+              </Button>
+            </div>
+          </Reveal>
         </DialogContent>
       </Dialog>
     </div>

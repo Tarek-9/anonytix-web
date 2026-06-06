@@ -19,14 +19,14 @@ export default function AiOverviewPage() {
     getDashboardOverview().then(setData)
   }, [])
 
-  if (!data) return <p className="text-muted-foreground">Lädt …</p>
+  if (!data) return <p className="text-muted-foreground">Loading...</p>
 
   return (
     <div className="flex flex-col gap-6">
       <div>
         <h1 className="flex items-center gap-2 text-2xl font-semibold">
           <IconSparkles className="size-6 text-primary" />
-          KI-Analyse
+          AI Analysis
         </h1>
         <p className="text-muted-foreground">
           {data.company.name} · {data.campaign.name}
@@ -35,7 +35,7 @@ export default function AiOverviewPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Zusammenfassung</CardTitle>
+          <CardTitle>Summary</CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col gap-2">
           <p>{data.aiSummary.summary}</p>
@@ -46,7 +46,7 @@ export default function AiOverviewPage() {
       {data.aiHighlights && (
         <Card>
           <CardHeader>
-            <CardTitle>Wichtigste Erkenntnisse</CardTitle>
+            <CardTitle>Key Insights</CardTitle>
           </CardHeader>
           <CardContent className="flex flex-col gap-3">
             {data.aiHighlights.map((h, i) => (
@@ -64,7 +64,7 @@ export default function AiOverviewPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Erkannte Themen</CardTitle>
+          <CardTitle>Detected Topics</CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col gap-3">
           {data.topTopics.map((t, i) => (
@@ -86,7 +86,7 @@ export default function AiOverviewPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Empfohlene Maßnahmen</CardTitle>
+          <CardTitle>Recommended Actions</CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col gap-3">
           {data.recommendedActions.map((a) => (

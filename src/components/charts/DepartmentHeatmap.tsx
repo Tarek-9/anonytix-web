@@ -5,10 +5,10 @@ import { cn } from '@/lib/utils'
 
 const CATEGORIES = ['LEADERSHIP', 'WORKLOAD', 'COMMUNICATION', 'TEAMWORK'] as const
 const LABELS: Record<string, string> = {
-  LEADERSHIP: 'Führung',
-  WORKLOAD: 'Belastung',
-  COMMUNICATION: 'Kommunikation',
-  TEAMWORK: 'Team',
+  LEADERSHIP: 'Leadership',
+  WORKLOAD: 'Workload',
+  COMMUNICATION: 'Communication',
+  TEAMWORK: 'Teamwork',
 }
 
 function cellColor(score: number): string {
@@ -21,13 +21,13 @@ export function DepartmentHeatmap({ rows }: { rows: HeatmapRow[] }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Abteilungs-Heatmap</CardTitle>
+        <CardTitle>Department Heatmap</CardTitle>
       </CardHeader>
       <CardContent className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
             <tr className="text-left text-muted-foreground">
-              <th className="p-2">Abteilung</th>
+              <th className="p-2">Department</th>
               {CATEGORIES.map((c) => (
                 <th key={c} className="p-2">{LABELS[c]}</th>
               ))}
@@ -50,7 +50,7 @@ export function DepartmentHeatmap({ rows }: { rows: HeatmapRow[] }) {
                 </td>
                 {row.suppressed || !row.scores ? (
                   <td colSpan={CATEGORIES.length} className="p-2 text-muted-foreground">
-                    Nicht genügend Daten
+                    Not enough data
                   </td>
                 ) : (
                   CATEGORIES.map((c) => (

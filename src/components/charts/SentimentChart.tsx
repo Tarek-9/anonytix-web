@@ -9,9 +9,9 @@ import {
 } from '@/components/ui/chart'
 
 const config = {
-  POSITIVE: { label: 'Positiv', color: 'var(--chart-2)' },
+  POSITIVE: { label: 'Positive', color: 'var(--chart-2)' },
   NEUTRAL: { label: 'Neutral', color: 'var(--chart-3)' },
-  NEGATIVE: { label: 'Negativ', color: 'var(--chart-5)' },
+  NEGATIVE: { label: 'Negative', color: 'var(--chart-5)' },
 } satisfies ChartConfig
 
 export function SentimentChart({ data }: { data: SentimentSlice[] }) {
@@ -23,7 +23,7 @@ export function SentimentChart({ data }: { data: SentimentSlice[] }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Stimmungsverteilung</CardTitle>
+        <CardTitle>Sentiment Distribution</CardTitle>
       </CardHeader>
       <CardContent>
         <ChartContainer config={config} className="mx-auto aspect-square max-h-64">

@@ -6,8 +6,8 @@ import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 
 function titleFor(pathname: string): string {
   if (pathname.startsWith('/dashboard')) return 'Dashboard'
-  if (pathname.startsWith('/surveys')) return 'Umfrage bearbeiten'
-  return 'Umfragen'
+  if (pathname.startsWith('/surveys')) return 'Edit survey'
+  return 'Surveys'
 }
 
 export default function App() {

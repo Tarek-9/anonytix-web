@@ -130,7 +130,7 @@ export async function publishAndGetLink(surveyId: string): Promise<PublishResult
   await apiFetch(`/companies/${COMPANY_ID}/surveys/${surveyId}/publish`, { method: 'POST' })
   const campaign = await apiFetch<{ id: string }>(`/companies/${COMPANY_ID}/campaigns`, {
     method: 'POST',
-    body: JSON.stringify({ surveyId, name: 'Kampagne', startsAt: null, endsAt: null }),
+    body: JSON.stringify({ surveyId, name: 'Campaign', startsAt: null, endsAt: null }),
   })
   await apiFetch(`/companies/${COMPANY_ID}/campaigns/${campaign.id}/activate`, { method: 'POST' })
   const batch = await apiFetch<{ campaignId: string; invitations: { url: string; expiresAt: string }[] }>(
@@ -169,7 +169,7 @@ export async function submitFeedback(
       submissionId: 'mock-submission',
       status: 'RECEIVED',
       submittedAt: new Date().toISOString(),
-      message: 'Vielen Dank. Dein Feedback wurde erfolgreich und anonym übermittelt.',
+      message: 'Thank you. Your feedback was submitted successfully and anonymously.',
     }
   }
   return apiFetch(`/public/invitations/${token}/submissions`, {

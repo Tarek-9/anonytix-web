@@ -1,11 +1,11 @@
 {
   "company": {
     "id": "10729623-735e-4382-854f-33e3450bdac7",
-    "name": "Anonytix Demo GmbH"
+    "name": "Anonytix Demo Ltd."
   },
   "campaign": {
     "id": "93b6108f-f005-4f4b-8ce9-952fa0a7ddc4",
-    "name": "Mitarbeiterbefragung Juni 2026",
+    "name": "Employee Survey June 2026",
     "startsAt": "2026-06-01T00:00:00Z",
     "endsAt": "2026-06-20T21:59:59Z"
   },
@@ -14,65 +14,65 @@
   "kpis": [
     {
       "key": "OVERALL_SATISFACTION",
-      "label": "Gesamtzufriedenheit",
+      "label": "Overall Satisfaction",
       "value": 3.4,
       "unit": "OUT_OF_5",
       "change": -0.4,
-      "changeLabel": "seit der letzten Befragung"
+      "changeLabel": "since the last survey"
     },
     {
       "key": "PARTICIPATION_RATE",
-      "label": "Teilnahmequote",
+      "label": "Participation Rate",
       "value": 78,
       "unit": "PERCENT",
       "change": 6,
-      "changeLabel": "gegenüber der letzten Befragung"
+      "changeLabel": "compared with the last survey"
     },
     {
       "key": "POSITIVE_SENTIMENT",
-      "label": "Positive Stimmung",
+      "label": "Positive Sentiment",
       "value": 54,
       "unit": "PERCENT",
       "change": -8,
-      "changeLabel": "gegenüber der letzten Befragung"
+      "changeLabel": "compared with the last survey"
     },
     {
       "key": "CRITICAL_TOPICS",
-      "label": "Kritische Themen",
+      "label": "Critical Topics",
       "value": 3,
       "unit": "COUNT",
       "change": 1,
-      "changeLabel": "neues kritisches Thema"
+      "changeLabel": "new critical topic"
     },
     {
       "key": "STRONGEST_CATEGORY",
-      "label": "Stärkster Bereich",
+      "label": "Strongest Category",
       "value": 4.3,
       "unit": "OUT_OF_5",
-      "detail": "Teamzusammenhalt"
+      "detail": "Team Cohesion"
     },
     {
       "key": "WEAKEST_CATEGORY",
-      "label": "Schwächster Bereich",
+      "label": "Weakest Category",
       "value": 2.1,
       "unit": "OUT_OF_5",
-      "detail": "Arbeitsbelastung"
+      "detail": "Workload"
     },
     {
       "key": "OPEN_ACTIONS",
-      "label": "Offene Maßnahmen",
+      "label": "Open Actions",
       "value": 5,
       "unit": "COUNT",
       "change": -2,
-      "changeLabel": "seit letzter Woche"
+      "changeLabel": "since last week"
     },
     {
       "key": "RECOMMENDATION_RATE",
-      "label": "Weiterempfehlung",
+      "label": "Recommendation Rate",
       "value": 64,
       "unit": "PERCENT",
       "change": -3,
-      "changeLabel": "gegenüber der letzten Befragung"
+      "changeLabel": "compared with the last survey"
     }
   ],
   "sentimentDistribution": [
@@ -95,35 +95,35 @@
   "categoryScores": [
     {
       "category": "TEAMWORK",
-      "label": "Teamzusammenhalt",
+      "label": "Team Cohesion",
       "score": 4.3,
       "previousScore": 4.1,
       "sampleSize": 125
     },
     {
       "category": "WORK_ENVIRONMENT",
-      "label": "Arbeitsumgebung",
+      "label": "Work Environment",
       "score": 3.8,
       "previousScore": 3.7,
       "sampleSize": 121
     },
     {
       "category": "COMMUNICATION",
-      "label": "Kommunikation",
+      "label": "Communication",
       "score": 3.1,
       "previousScore": 3.5,
       "sampleSize": 123
     },
     {
       "category": "LEADERSHIP",
-      "label": "Führung",
+      "label": "Leadership",
       "score": 2.8,
       "previousScore": 3.2,
       "sampleSize": 119
     },
     {
       "category": "WORKLOAD",
-      "label": "Arbeitsbelastung",
+      "label": "Workload",
       "score": 2.1,
       "previousScore": 2.7,
       "sampleSize": 126
@@ -132,19 +132,19 @@
   "satisfactionTrend": [
     {
       "period": "2026-01",
-      "label": "Januar",
+      "label": "January",
       "score": 3.8,
       "sampleSize": 104
     },
     {
       "period": "2026-02",
-      "label": "Februar",
+      "label": "February",
       "score": 3.7,
       "sampleSize": 109
     },
     {
       "period": "2026-03",
-      "label": "März",
+      "label": "March",
       "score": 3.6,
       "sampleSize": 112
     },
@@ -156,13 +156,13 @@
     },
     {
       "period": "2026-05",
-      "label": "Mai",
+      "label": "May",
       "score": 3.8,
       "sampleSize": 124
     },
     {
       "period": "2026-06",
-      "label": "Juni",
+      "label": "June",
       "score": 3.4,
       "sampleSize": 127
     }
@@ -170,7 +170,7 @@
   "departmentHeatmap": [
     {
       "departmentId": "ac38af63-dc5a-416e-b5d7-c237535ec37b",
-      "departmentName": "Softwareentwicklung",
+      "departmentName": "Software Development",
       "sampleSize": 34,
       "scores": {
         "LEADERSHIP": 3.2,
@@ -181,7 +181,7 @@
     },
     {
       "departmentId": "6a095a71-c076-4f35-98bd-4ec01937be84",
-      "departmentName": "Vertrieb",
+      "departmentName": "Sales",
       "sampleSize": 29,
       "scores": {
         "LEADERSHIP": 2.4,
@@ -203,7 +203,7 @@
     },
     {
       "departmentId": "d2f7524e-6e27-48dc-83ea-4ba9bfe716ca",
-      "departmentName": "Personal",
+      "departmentName": "Human Resources",
       "sampleSize": 4,
       "suppressed": true,
       "suppressionReason": "MINIMUM_GROUP_SIZE_NOT_REACHED",
@@ -214,7 +214,7 @@
     {
       "id": "2b0da087-d18d-48f0-bbab-a77d97dd5d70",
       "category": "WORKLOAD",
-      "label": "Hohe Arbeitsbelastung",
+      "label": "High Workload",
       "mentions": 38,
       "sentiment": "NEGATIVE",
       "priority": "HIGH",
@@ -223,7 +223,7 @@
     {
       "id": "32fd1ee4-f8b6-4fbb-91ae-1fe598d2c6b1",
       "category": "COMMUNICATION",
-      "label": "Unklare Kommunikation",
+      "label": "Unclear Communication",
       "mentions": 24,
       "sentiment": "NEGATIVE",
       "priority": "HIGH",
@@ -232,7 +232,7 @@
     {
       "id": "b17a31e6-fe40-4d37-9be1-021a01ec19e2",
       "category": "TEAMWORK",
-      "label": "Guter Teamzusammenhalt",
+      "label": "Strong Team Cohesion",
       "mentions": 21,
       "sentiment": "POSITIVE",
       "priority": "LOW",
@@ -240,16 +240,16 @@
     }
   ],
   "aiSummary": {
-    "summary": "Die Gesamtzufriedenheit ist im Juni gesunken. Besonders auffällig sind die hohe Arbeitsbelastung im Vertrieb und eine schlechter bewertete Führungskommunikation. Der Teamzusammenhalt wird weiterhin überwiegend positiv bewertet.",
+    "summary": "Overall satisfaction declined in June. The high workload in Sales and lower ratings for leadership communication are particularly notable. Team cohesion continues to receive predominantly positive ratings.",
     "generatedAt": "2026-06-06T12:00:00Z",
     "model": "demo-model",
-    "disclaimer": "KI-generierte Zusammenfassung auf Basis anonymisierter und aggregierter Daten."
+    "disclaimer": "AI-generated summary based on anonymized and aggregated data."
   },
   "recommendedActions": [
     {
       "id": "045c5d71-a61a-42d8-8958-c3fd781c28f2",
-      "title": "Arbeitsbelastung im Vertrieb prüfen",
-      "description": "Aufgabenverteilung und Kapazitäten im Vertrieb analysieren und kurzfristig priorisieren.",
+      "title": "Review Workload in Sales",
+      "description": "Analyze task allocation and capacity in Sales, then set short-term priorities.",
       "category": "WORKLOAD",
       "priority": "HIGH",
       "status": "OPEN",
@@ -257,8 +257,8 @@
     },
     {
       "id": "b948863b-f42f-41e1-afba-3078233bcfa8",
-      "title": "Führungskommunikation verbessern",
-      "description": "Regelmäßige Team-Updates und klare Verantwortlichkeiten für Entscheidungen einführen.",
+      "title": "Improve Leadership Communication",
+      "description": "Introduce regular team updates and clear ownership for decisions.",
       "category": "LEADERSHIP",
       "priority": "HIGH",
       "status": "IN_PROGRESS",
@@ -268,19 +268,19 @@
   "feedbackByMonth": [
     {
       "period": "2026-01",
-      "label": "Januar",
+      "label": "January",
       "positive": 58,
       "negative": 30
     },
     {
       "period": "2026-02",
-      "label": "Februar",
+      "label": "February",
       "positive": 60,
       "negative": 33
     },
     {
       "period": "2026-03",
-      "label": "März",
+      "label": "March",
       "positive": 59,
       "negative": 38
     },
@@ -292,13 +292,13 @@
     },
     {
       "period": "2026-05",
-      "label": "Mai",
+      "label": "May",
       "positive": 70,
       "negative": 35
     },
     {
       "period": "2026-06",
-      "label": "Juni",
+      "label": "June",
       "positive": 66,
       "negative": 45
     }
@@ -320,7 +320,7 @@
       "2024": 3.1,
       "2025": 3.5,
       "2026": 3.6,
-      "month": "Mär"
+      "month": "Mar"
     },
     {
       "2024": 3.4,
@@ -332,7 +332,7 @@
       "2024": 3.5,
       "2025": 3.9,
       "2026": 3.8,
-      "month": "Mai"
+      "month": "May"
     },
     {
       "2024": 3.3,
@@ -362,7 +362,7 @@
       "2024": 3.6,
       "2025": 4,
       "2026": null,
-      "month": "Okt"
+      "month": "Oct"
     },
     {
       "2024": 3.8,
@@ -374,7 +374,7 @@
       "2024": 3.7,
       "2025": 3.9,
       "2026": null,
-      "month": "Dez"
+      "month": "Dec"
     }
   ],
   "years": [
@@ -388,35 +388,35 @@
       "kpis": [
         {
           "key": "OVERALL_SATISFACTION",
-          "label": "Gesamtzufriedenheit",
+          "label": "Overall Satisfaction",
           "value": 3.4,
           "unit": "OUT_OF_5",
           "change": -0.1,
-          "changeLabel": "ggü. Vorjahr"
+          "changeLabel": "compared with previous year"
         },
         {
           "key": "PARTICIPATION_RATE",
-          "label": "Teilnahmequote",
+          "label": "Participation Rate",
           "value": 71,
           "unit": "PERCENT",
           "change": 4,
-          "changeLabel": "ggü. Vorjahr"
+          "changeLabel": "compared with previous year"
         },
         {
           "key": "POSITIVE_SENTIMENT",
-          "label": "Positive Stimmung",
+          "label": "Positive Sentiment",
           "value": 48,
           "unit": "PERCENT",
           "change": -2,
-          "changeLabel": "ggü. Vorjahr"
+          "changeLabel": "compared with previous year"
         },
         {
           "key": "CRITICAL_TOPICS",
-          "label": "Kritische Themen",
+          "label": "Critical Topics",
           "value": 5,
           "unit": "COUNT",
           "change": 1,
-          "changeLabel": "kritische Themen"
+          "changeLabel": "critical topics"
         }
       ],
       "sentimentDistribution": [
@@ -451,7 +451,7 @@
         },
         {
           "period": "2024-03",
-          "label": "Mär",
+          "label": "Mar",
           "positive": 138,
           "negative": 100
         },
@@ -463,7 +463,7 @@
         },
         {
           "period": "2024-05",
-          "label": "Mai",
+          "label": "May",
           "positive": 160,
           "negative": 92
         },
@@ -493,7 +493,7 @@
         },
         {
           "period": "2024-10",
-          "label": "Okt",
+          "label": "Oct",
           "positive": 165,
           "negative": 90
         },
@@ -505,7 +505,7 @@
         },
         {
           "period": "2024-12",
-          "label": "Dez",
+          "label": "Dec",
           "positive": 170,
           "negative": 88
         }
@@ -516,35 +516,35 @@
       "kpis": [
         {
           "key": "OVERALL_SATISFACTION",
-          "label": "Gesamtzufriedenheit",
+          "label": "Overall Satisfaction",
           "value": 3.8,
           "unit": "OUT_OF_5",
           "change": 0.4,
-          "changeLabel": "ggü. Vorjahr"
+          "changeLabel": "compared with previous year"
         },
         {
           "key": "PARTICIPATION_RATE",
-          "label": "Teilnahmequote",
+          "label": "Participation Rate",
           "value": 80,
           "unit": "PERCENT",
           "change": 9,
-          "changeLabel": "ggü. Vorjahr"
+          "changeLabel": "compared with previous year"
         },
         {
           "key": "POSITIVE_SENTIMENT",
-          "label": "Positive Stimmung",
+          "label": "Positive Sentiment",
           "value": 58,
           "unit": "PERCENT",
           "change": 10,
-          "changeLabel": "ggü. Vorjahr"
+          "changeLabel": "compared with previous year"
         },
         {
           "key": "CRITICAL_TOPICS",
-          "label": "Kritische Themen",
+          "label": "Critical Topics",
           "value": 2,
           "unit": "COUNT",
           "change": -3,
-          "changeLabel": "kritische Themen"
+          "changeLabel": "critical topics"
         }
       ],
       "sentimentDistribution": [
@@ -579,7 +579,7 @@
         },
         {
           "period": "2025-03",
-          "label": "Mär",
+          "label": "Mar",
           "positive": 160,
           "negative": 80
         },
@@ -591,7 +591,7 @@
         },
         {
           "period": "2025-05",
-          "label": "Mai",
+          "label": "May",
           "positive": 190,
           "negative": 60
         },
@@ -621,7 +621,7 @@
         },
         {
           "period": "2025-10",
-          "label": "Okt",
+          "label": "Oct",
           "positive": 198,
           "negative": 58
         },
@@ -633,7 +633,7 @@
         },
         {
           "period": "2025-12",
-          "label": "Dez",
+          "label": "Dec",
           "positive": 190,
           "negative": 64
         }
@@ -644,35 +644,35 @@
       "kpis": [
         {
           "key": "OVERALL_SATISFACTION",
-          "label": "Gesamtzufriedenheit",
+          "label": "Overall Satisfaction",
           "value": 3.6,
           "unit": "OUT_OF_5",
           "change": -0.2,
-          "changeLabel": "ggü. Vorjahr"
+          "changeLabel": "compared with previous year"
         },
         {
           "key": "PARTICIPATION_RATE",
-          "label": "Teilnahmequote",
+          "label": "Participation Rate",
           "value": 78,
           "unit": "PERCENT",
           "change": -2,
-          "changeLabel": "ggü. Vorjahr"
+          "changeLabel": "compared with previous year"
         },
         {
           "key": "POSITIVE_SENTIMENT",
-          "label": "Positive Stimmung",
+          "label": "Positive Sentiment",
           "value": 54,
           "unit": "PERCENT",
           "change": -4,
-          "changeLabel": "ggü. Vorjahr"
+          "changeLabel": "compared with previous year"
         },
         {
           "key": "CRITICAL_TOPICS",
-          "label": "Kritische Themen",
+          "label": "Critical Topics",
           "value": 3,
           "unit": "COUNT",
           "change": 1,
-          "changeLabel": "kritische Themen"
+          "changeLabel": "critical topics"
         }
       ],
       "sentimentDistribution": [
@@ -707,7 +707,7 @@
         },
         {
           "period": "2026-03",
-          "label": "Mär",
+          "label": "Mar",
           "positive": 59,
           "negative": 38
         },
@@ -719,7 +719,7 @@
         },
         {
           "period": "2026-05",
-          "label": "Mai",
+          "label": "May",
           "positive": 70,
           "negative": 35
         },
@@ -735,27 +735,27 @@
   "aiHighlights": [
     {
       "id": "h1",
-      "text": "Gesamtzufriedenheit im Juni leicht gesunken (3,4/5)",
+      "text": "Overall satisfaction declined slightly in June (3.4/5)",
       "sentiment": "NEGATIVE"
     },
     {
       "id": "h2",
-      "text": "Hohe Arbeitsbelastung im Vertrieb — 38 Nennungen, steigend",
+      "text": "High workload in Sales, with 38 mentions and rising",
       "sentiment": "NEGATIVE"
     },
     {
       "id": "h3",
-      "text": "Führungskommunikation schlechter bewertet als im Vormonat",
+      "text": "Leadership communication rated lower than last month",
       "sentiment": "NEGATIVE"
     },
     {
       "id": "h4",
-      "text": "Teamzusammenhalt bleibt ein stabiler Pluspunkt",
+      "text": "Team cohesion remains a consistent strength",
       "sentiment": "POSITIVE"
     },
     {
       "id": "h5",
-      "text": "Teilnahmequote auf 78 % gestiegen (+6 Punkte)",
+      "text": "Participation rate increased to 78% (+6 points)",
       "sentiment": "POSITIVE"
     }
   ]

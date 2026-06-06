@@ -5,71 +5,74 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.55 0.22 300);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+
+  /* Brand hue ≈ 280 (indigo-violet): "analytics + trust".
+     Neutrals are tinted toward it with low chroma for subconscious cohesion. */
+  --background: oklch(0.994 0.002 280);
+  --foreground: oklch(0.19 0.012 280);
+  --card: oklch(1 0.001 280);
+  --card-foreground: oklch(0.19 0.012 280);
+  --popover: oklch(1 0.001 280);
+  --popover-foreground: oklch(0.19 0.012 280);
+  --primary: oklch(0.5 0.19 280);
+  --primary-foreground: oklch(0.985 0.003 280);
+  --secondary: oklch(0.965 0.005 280);
+  --secondary-foreground: oklch(0.26 0.015 280);
+  --muted: oklch(0.965 0.005 280);
+  --muted-foreground: oklch(0.52 0.018 280);
+  --accent: oklch(0.955 0.012 280);
+  --accent-foreground: oklch(0.32 0.05 280);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.55 0.22 300);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: hsl(0 0% 98%);
-  --sidebar-foreground: hsl(240 5.3% 26.1%);
-  --sidebar-primary: hsl(240 5.9% 10%);
-  --sidebar-primary-foreground: hsl(0 0% 98%);
-  --sidebar-accent: hsl(240 4.8% 95.9%);
-  --sidebar-accent-foreground: hsl(240 5.9% 10%);
-  --sidebar-border: hsl(220 13% 91%);
-  --sidebar-ring: hsl(217.2 91.2% 59.8%);
+  --border: oklch(0.912 0.006 280);
+  --input: oklch(0.912 0.006 280);
+  --ring: oklch(0.5 0.19 280);
+  --chart-1: oklch(0.55 0.18 280);
+  --chart-2: oklch(0.64 0.12 200);
+  --chart-3: oklch(0.72 0.14 75);
+  --chart-4: oklch(0.62 0.16 330);
+  --chart-5: oklch(0.6 0.11 165);
+  --sidebar: oklch(0.978 0.004 280);
+  --sidebar-foreground: oklch(0.34 0.015 280);
+  --sidebar-primary: oklch(0.5 0.19 280);
+  --sidebar-primary-foreground: oklch(0.985 0.003 280);
+  --sidebar-accent: oklch(0.945 0.012 280);
+  --sidebar-accent-foreground: oklch(0.32 0.05 280);
+  --sidebar-border: oklch(0.91 0.006 280);
+  --sidebar-ring: oklch(0.5 0.19 280);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.7 0.18 300);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  --background: oklch(0.17 0.008 280);
+  --foreground: oklch(0.97 0.004 280);
+  --card: oklch(0.215 0.012 280);
+  --card-foreground: oklch(0.97 0.004 280);
+  --popover: oklch(0.215 0.012 280);
+  --popover-foreground: oklch(0.97 0.004 280);
+  --primary: oklch(0.72 0.16 280);
+  --primary-foreground: oklch(0.18 0.02 280);
+  --secondary: oklch(0.27 0.012 280);
+  --secondary-foreground: oklch(0.97 0.004 280);
+  --muted: oklch(0.27 0.012 280);
+  --muted-foreground: oklch(0.71 0.015 280);
+  --accent: oklch(0.3 0.03 280);
+  --accent-foreground: oklch(0.96 0.01 280);
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
+  --border: oklch(1 0 0 / 11%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.7 0.18 300);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: hsl(240 5.9% 10%);
-  --sidebar-foreground: hsl(240 4.8% 95.9%);
-  --sidebar-primary: hsl(224.3 76.3% 48%);
-  --sidebar-primary-foreground: hsl(0 0% 100%);
-  --sidebar-accent: hsl(240 3.7% 15.9%);
-  --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
-  --sidebar-border: hsl(240 3.7% 15.9%);
-  --sidebar-ring: hsl(217.2 91.2% 59.8%);
+  --ring: oklch(0.72 0.16 280);
+  --chart-1: oklch(0.7 0.16 280);
+  --chart-2: oklch(0.68 0.12 200);
+  --chart-3: oklch(0.76 0.15 75);
+  --chart-4: oklch(0.68 0.17 330);
+  --chart-5: oklch(0.66 0.12 165);
+  --sidebar: oklch(0.205 0.01 280);
+  --sidebar-foreground: oklch(0.92 0.006 280);
+  --sidebar-primary: oklch(0.72 0.16 280);
+  --sidebar-primary-foreground: oklch(0.18 0.02 280);
+  --sidebar-accent: oklch(0.3 0.03 280);
+  --sidebar-accent-foreground: oklch(0.96 0.01 280);
+  --sidebar-border: oklch(1 0 0 / 11%);
+  --sidebar-ring: oklch(0.72 0.16 280);
 }
 
 @theme inline {
@@ -77,6 +80,8 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --font-sans: 'Hanken Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Bricolage Grotesque', 'Hanken Grotesk', sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -112,5 +117,73 @@
 
 @layer base {
   * { @apply border-border outline-ring/50; }
-  body { @apply bg-background text-foreground; }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    font-feature-settings: 'ss01', 'cv01';
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  /* Display typeface for headings and large numbers — sets a confident hierarchy. */
+  .font-display { font-family: var(--font-display); }
+  /* Tabular figures by default for KPIs/tables so data doesn't "jump". */
+  .tabular-nums { font-variant-numeric: tabular-nums; }
+}
+
+/* ── Motion system ──────────────────────────────────────────────
+   Precise exponential ease-out, no bounce/elastic. Durations are
+   short: motion serves comprehension rather than drawing attention. */
+:root {
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-fast: 180ms;
+  --motion-base: 320ms;
+  --motion-slow: 560ms;
+}
+
+@keyframes reveal-up {
+  from { opacity: 0; transform: translate3d(0, 12px, 0); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes reveal-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Restrained confirmation: gentle scale-in, no bounce. */
+@keyframes success-pop {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@layer utilities {
+  /* Entrance with a slight upward shift; delay is set via inline style (stagger). */
+  .reveal-up {
+    opacity: 0;
+    animation: reveal-up var(--motion-slow) var(--ease-out-expo) both;
+    animation-delay: var(--reveal-delay, 0ms);
+  }
+  .reveal-fade {
+    opacity: 0;
+    animation: reveal-fade var(--motion-base) var(--ease-out-quart) both;
+    animation-delay: var(--reveal-delay, 0ms);
+  }
+  .success-pop {
+    animation: success-pop var(--motion-base) var(--ease-out-expo) both;
+  }
+}
+
+/* A tool, not a ride: fully disable motion per the system setting. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal-up,
+  .reveal-fade { opacity: 1 !important; }
 }

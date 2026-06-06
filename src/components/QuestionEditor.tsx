@@ -1,4 +1,6 @@
 import type { Question, QuestionType } from '@/lib/types'
+import { useSortable } from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
@@ -10,14 +12,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { Trash2 } from 'lucide-react'
+import { cn } from '@/lib/utils'
+import { GripVertical, Trash2 } from 'lucide-react'
 
 const TYPE_LABELS: Record<QuestionType, string> = {
-  RATING: 'Bewertung (1–5)',
-  TEXT: 'Freitext',
-  BOOLEAN: 'Ja / Nein',
-  SINGLE_CHOICE: 'Einzelauswahl',
-  MULTI_CHOICE: 'Mehrfachauswahl',
+  RATING: 'Rating (1–5)',
+  TEXT: 'Free text',
+  BOOLEAN: 'Yes / No',
+  SINGLE_CHOICE: 'Single choice',
+  MULTI_CHOICE: 'Multiple choice',
 }
 
 interface QuestionEditorProps {
@@ -30,15 +33,50 @@ export function QuestionEditor({ question, onChange, onDelete }: QuestionEditorP
   const hasOptions =
     question.type === 'SINGLE_CHOICE' || question.type === 'MULTI_CHOICE'
 
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    setActivatorNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: question.id })
+
+  const style = {
+    transform: CSS.Translate.toString(transform),
+    transition,
+  }
+
   return (
-    <div className="flex flex-col gap-3 rounded-lg border p-4">
+    <div
+      ref={setNodeRef}
+      style={style}
+      className={cn(
+        'flex flex-col gap-3 rounded-lg border bg-card p-4',
+        // On lift the card detaches from the sheet: shadow + slight scale-up.
+        isDragging
+          ? 'z-10 scale-[1.01] shadow-lg'
+          : 'shadow-xs transition-shadow duration-(--motion-fast)',
+      )}
+    >
       <div className="flex items-start gap-2">
+        <button
+          ref={setActivatorNodeRef}
+          type="button"
+          aria-label="Move question"
+          className="mt-1.5 cursor-grab touch-none rounded-sm p-0.5 text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none active:cursor-grabbing"
+          {...attributes}
+          {...listeners}
+        >
+          <GripVertical className="size-4" />
+        </button>
         <Input
           value={question.text}
-          placeholder="Fragetext"
+          placeholder="Question text"
           onChange={(e) => onChange({ ...question, text: e.target.value })}
         />
-        <Button variant="ghost" size="icon" onClick={onDelete} aria-label="Frage löschen">
+        <Button variant="ghost" size="icon" onClick={onDelete} aria-label="Delete question">
           <Trash2 className="size-4" />
         </Button>
       </div>
@@ -67,13 +105,13 @@ export function QuestionEditor({ question, onChange, onDelete }: QuestionEditorP
             checked={question.required}
             onCheckedChange={(c) => onChange({ ...question, required: c === true })}
           />
-          Pflichtfrage
+          Required question
         </label>
       </div>
 
       {hasOptions && (
         <div className="flex flex-col gap-2">
-          <Label className="text-xs text-muted-foreground">Antwortoptionen</Label>
+          <Label className="text-xs text-muted-foreground">Answer options</Label>
           {question.options.map((opt, i) => (
             <div key={opt.id} className="flex gap-2">
               <Input
@@ -90,7 +128,7 @@ export function QuestionEditor({ question, onChange, onDelete }: QuestionEditorP
               <Button
                 variant="ghost"
                 size="icon"
-                aria-label="Option löschen"
+                aria-label="Delete option"
                 onClick={() =>
                   onChange({
                     ...question,
@@ -113,7 +151,7 @@ export function QuestionEditor({ question, onChange, onDelete }: QuestionEditorP
                   ...question.options,
                   {
                     id: `opt-${question.id}-${question.options.length}`,
-                    label: 'Neue Option',
+                    label: 'New option',
                     value: `OPT_${question.options.length}`,
                     position: question.options.length + 1,
                   },
@@ -121,7 +159,7 @@ export function QuestionEditor({ question, onChange, onDelete }: QuestionEditorP
               })
             }
           >
-            Option hinzufügen
+            Add option
           </Button>
         </div>
       )}

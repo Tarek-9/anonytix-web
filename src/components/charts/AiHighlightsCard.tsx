@@ -23,10 +23,10 @@ export function AiHighlightsCard({ highlights }: { highlights: AiHighlight[] }) 
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <IconSparkles className="size-4 text-primary" />
-            KI-Highlights
+            AI Highlights
             <IconArrowRight className="ml-auto size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
           </CardTitle>
-          <CardDescription>Top 5 Erkenntnisse — zur vollständigen KI-Analyse</CardDescription>
+          <CardDescription>Top 5 insights, with the full AI analysis</CardDescription>
         </CardHeader>
         <CardContent className="flex flex-col gap-3">
           {highlights.slice(0, 5).map((h, i) => (

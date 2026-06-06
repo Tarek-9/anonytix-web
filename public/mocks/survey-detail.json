@@ -1,15 +1,15 @@
 {
   "id": "26c98d0d-95f7-492b-a95d-a9bce4409f03",
-  "title": "Mitarbeiterbefragung Juni 2026",
-  "description": "Monatliche anonyme Pulsbefragung",
+  "title": "Employee Survey June 2026",
+  "description": "Monthly anonymous pulse survey",
   "type": "PULSE",
   "status": "PUBLISHED",
   "createdAt": "2026-06-01T09:00:00Z",
   "questions": [
     {
       "id": "84b9c571-a11c-4fd4-84e5-76ec5f6055f0",
-      "text": "Wie zufrieden bist du insgesamt mit deiner Arbeit?",
-      "helpText": "1 bedeutet sehr unzufrieden, 5 bedeutet sehr zufrieden.",
+      "text": "How satisfied are you with your work overall?",
+      "helpText": "1 means very dissatisfied and 5 means very satisfied.",
       "type": "RATING",
       "category": "OVERALL_SATISFACTION",
       "required": true,
@@ -23,7 +23,7 @@
     },
     {
       "id": "39f96f91-9ad4-4884-97fd-9dd2603fe409",
-      "text": "Wie bewertest du die Kommunikation deiner Führungskraft?",
+      "text": "How would you rate communication from your manager?",
       "helpText": null,
       "type": "RATING",
       "category": "LEADERSHIP",
@@ -38,7 +38,7 @@
     },
     {
       "id": "99f2ed06-50c2-423a-a864-5713d89da83b",
-      "text": "Wie empfindest du deine aktuelle Arbeitsbelastung?",
+      "text": "How do you feel about your current workload?",
       "helpText": null,
       "type": "SINGLE_CHOICE",
       "category": "WORKLOAD",
@@ -50,15 +50,15 @@
       "analyzeWithAi": false,
       "departmentIds": [],
       "options": [
-        { "id": "bed4cbe1-38dc-4f37-b91c-c28570bc7fc6", "label": "Zu niedrig", "value": "TOO_LOW", "position": 1 },
-        { "id": "00c6a586-378f-46a9-b82c-bd15cb5cb17c", "label": "Angemessen", "value": "BALANCED", "position": 2 },
-        { "id": "53d661ac-031d-44c7-82ff-b2c884394262", "label": "Zu hoch", "value": "TOO_HIGH", "position": 3 }
+        { "id": "bed4cbe1-38dc-4f37-b91c-c28570bc7fc6", "label": "Too low", "value": "TOO_LOW", "position": 1 },
+        { "id": "00c6a586-378f-46a9-b82c-bd15cb5cb17c", "label": "Balanced", "value": "BALANCED", "position": 2 },
+        { "id": "53d661ac-031d-44c7-82ff-b2c884394262", "label": "Too high", "value": "TOO_HIGH", "position": 3 }
       ]
     },
     {
       "id": "cc36621b-c076-451b-923c-3e5580d94031",
-      "text": "Wie zufrieden bist du mit unseren Entwicklungsprozessen?",
-      "helpText": "Diese Frage wird nur der Abteilung Softwareentwicklung angezeigt.",
+      "text": "How satisfied are you with our development processes?",
+      "helpText": "This question is only shown to the Software Development department.",
       "type": "RATING",
       "category": "PROCESSES",
       "required": false,
@@ -72,8 +72,8 @@
     },
     {
       "id": "a53104ae-c34f-4248-af72-68c84cac07bc",
-      "text": "Was funktioniert aktuell besonders gut?",
-      "helpText": "Bitte nenne keine Namen oder andere identifizierende Informationen.",
+      "text": "What is working particularly well right now?",
+      "helpText": "Please do not include names or other identifying information.",
       "type": "TEXT",
       "category": "POSITIVE_FEEDBACK",
       "required": false,
@@ -87,8 +87,8 @@
     },
     {
       "id": "5a369b24-8da8-48d3-a274-a9530fceae46",
-      "text": "Was sollte das Unternehmen verbessern?",
-      "helpText": "Dein Text wird vor der Auswertung durch KI anonymisiert.",
+      "text": "What should the company improve?",
+      "helpText": "Your response will be anonymized by AI before analysis.",
       "type": "TEXT",
       "category": "IMPROVEMENT",
       "required": false,

@@ -66,7 +66,7 @@ export function validateAnswers(
   const errors: Record<string, string> = {}
   for (const q of questions) {
     if (q.required && isEmpty(answers[q.id])) {
-      errors[q.id] = 'Pflichtfeld'
+      errors[q.id] = 'Required field'
     }
   }
   return errors

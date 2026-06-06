@@ -79,7 +79,7 @@ describe('validateAnswers', () => {
   it('flags missing required answers', () => {
     const questions: Question[] = [q({ id: 't', type: 'TEXT', required: true })]
     const errors = validateAnswers(questions, {})
-    expect(errors).toEqual({ t: 'Pflichtfeld' })
+    expect(errors).toEqual({ t: 'Required field' })
   })
 
   it('passes when required answers are present', () => {
@@ -93,8 +93,8 @@ describe('validateAnswers', () => {
       q({ id: 'm', type: 'MULTI_CHOICE', required: true }),
     ]
     expect(validateAnswers(questions, { t: '', m: [] })).toEqual({
-      t: 'Pflichtfeld',
-      m: 'Pflichtfeld',
+      t: 'Required field',
+      m: 'Required field',
     })
   })
 })

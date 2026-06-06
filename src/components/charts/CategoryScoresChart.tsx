@@ -9,13 +9,13 @@ import {
 } from '@/components/ui/chart'
 
 const config = {
-  score: { label: 'Aktuell', color: 'var(--chart-1)' },
-  previousScore: { label: 'Vorher', color: 'var(--chart-3)' },
+  score: { label: 'Current', color: 'var(--chart-1)' },
+  previousScore: { label: 'Previous', color: 'var(--chart-3)' },
 } satisfies ChartConfig
 
 export function CategoryScoresChart({
   data,
-  title = 'Kategorie-Bewertungen',
+  title = 'Category Ratings',
 }: {
   data: CategoryScore[]
   title?: string
