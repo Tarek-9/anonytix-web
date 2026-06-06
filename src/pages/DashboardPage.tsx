@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { getDashboardOverview } from '@/lib/api'
 import type { DashboardOverview } from '@/lib/types'
 import { KpiCards } from '@/components/charts/KpiCards'
-import { SentimentChart } from '@/components/charts/SentimentChart'
+import { DepartmentParticipationChart } from '@/components/charts/DepartmentParticipationChart'
 import { MonthlyFeedbackChart } from '@/components/charts/MonthlyFeedbackChart'
 import { SatisfactionByYearChart } from '@/components/charts/SatisfactionByYearChart'
 import { AiHighlightsCard } from '@/components/charts/AiHighlightsCard'
@@ -71,7 +71,7 @@ export default function DashboardPage() {
       <KpiCards kpis={view.kpis} />
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <SentimentChart data={view.sentiment} />
+        <DepartmentParticipationChart rows={data.departmentHeatmap} />
         {view.feedbackByMonth && <MonthlyFeedbackChart data={view.feedbackByMonth} />}
       </div>
 
