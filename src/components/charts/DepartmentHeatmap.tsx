@@ -17,7 +17,20 @@ function cellColor(score: number): string {
   return 'bg-red-500/20 text-red-700'
 }
 
-export function DepartmentHeatmap({ rows }: { rows: HeatmapRow[] }) {
+export function DepartmentHeatmap({
+  rows,
+  campaignId,
+  year,
+}: {
+  rows: HeatmapRow[]
+  campaignId?: string
+  year?: string
+}) {
+  const query = new URLSearchParams()
+  if (campaignId) query.set('campaignId', campaignId)
+  if (year) query.set('year', year)
+  const suffix = query.size > 0 ? `?${query.toString()}` : ''
+
   return (
     <Card>
       <CardHeader>
@@ -42,7 +55,7 @@ export function DepartmentHeatmap({ rows }: { rows: HeatmapRow[] }) {
                   ) : (
                     <Link
                       className="hover:underline"
-                      to={`/dashboard/departments/${row.departmentId}`}
+                      to={`/dashboard/departments/${row.departmentId}${suffix}`}
                     >
                       {row.departmentName}
                     </Link>

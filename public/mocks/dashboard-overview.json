@@ -9,6 +9,7 @@
     "startsAt": "2026-06-01T00:00:00Z",
     "endsAt": "2026-06-20T21:59:59Z"
   },
+  "selectedYear": 2026,
   "sampleSize": 127,
   "minimumGroupSize": 5,
   "kpis": [
@@ -378,9 +379,9 @@
     }
   ],
   "years": [
-    "2024",
-    "2025",
-    "2026"
+    2024,
+    2025,
+    2026
   ],
   "byYear": {
     "2024": {

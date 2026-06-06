@@ -53,6 +53,15 @@ export interface SurveyWithQuestions extends Survey {
   questions: Question[]
 }
 
+export interface Campaign {
+  id: string
+  surveyId: string
+  name: string
+  startsAt: string
+  endsAt: string
+  status: 'SCHEDULED' | 'ACTIVE' | 'CLOSED'
+}
+
 // ----- public form (frontend model, see spec §2 deviation) -----
 export interface PublicForm {
   campaignId: string
@@ -193,6 +202,8 @@ export interface RecommendedAction {
 export interface DashboardOverview {
   company: { id: string; name: string }
   campaign: { id: string; name: string; startsAt: string; endsAt: string }
+  selectedYear: number
+  years: number[]
   sampleSize: number
   minimumGroupSize: number
   kpis: Kpi[]
@@ -201,8 +212,6 @@ export interface DashboardOverview {
   satisfactionTrend: TrendPoint[]
   feedbackByMonth?: MonthlyFeedback[]
   satisfactionByYear?: SatisfactionYearRow[]
-  years?: string[]
-  byYear?: Record<string, YearOverview>
   departmentHeatmap: HeatmapRow[]
   topTopics: TopTopic[]
   aiSummary: AiSummary

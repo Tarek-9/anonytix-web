@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { buildPublicForm } from '@/lib/api'
+import { buildDashboardQuery, buildPublicForm } from '@/lib/api'
 import type { SurveyWithQuestions, Department } from '@/lib/types'
 
 const departments: Department[] = [
@@ -41,5 +41,16 @@ describe('buildPublicForm', () => {
     const form = buildPublicForm('camp-1', survey, departments, 'dev')
     expect(form.selectedDepartmentId).toBe('dev')
     expect(form.questions.map((q) => q.id)).toEqual(['g', 'd'])
+  })
+})
+
+describe('buildDashboardQuery', () => {
+  it('omits empty filters', () => {
+    expect(buildDashboardQuery()).toBe('')
+  })
+
+  it('adds campaign and year filters', () => {
+    expect(buildDashboardQuery('campaign-1', '2025'))
+      .toBe('?campaignId=campaign-1&year=2025')
   })
 })

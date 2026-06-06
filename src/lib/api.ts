@@ -1,4 +1,9 @@
-import { API_BASE_URL, COMPANY_ID, USE_MOCKS } from '@/lib/config'
+import {
+  API_BASE_URL,
+  COMPANY_ID,
+  USE_DASHBOARD_MOCKS,
+  USE_MOCKS,
+} from '@/lib/config'
 import { filterQuestionsForDepartment } from '@/lib/form-logic'
 import {
   countSubmissions,
@@ -9,6 +14,7 @@ import {
 } from '@/lib/mock-store'
 import type {
   ApiError,
+  Campaign,
   DashboardOverview,
   Department,
   DepartmentDashboard,
@@ -116,6 +122,21 @@ export async function listDepartments(): Promise<Department[]> {
   return apiFetch(`/companies/${COMPANY_ID}/departments`)
 }
 
+export async function listCampaigns(): Promise<Campaign[]> {
+  if (USE_DASHBOARD_MOCKS) {
+    const dashboard = await loadMock<DashboardOverview>('dashboard-overview.json')
+    return [{
+      id: dashboard.campaign.id,
+      surveyId: '',
+      name: dashboard.campaign.name,
+      startsAt: dashboard.campaign.startsAt,
+      endsAt: dashboard.campaign.endsAt,
+      status: 'ACTIVE',
+    }]
+  }
+  return apiFetch(`/companies/${COMPANY_ID}/campaigns`)
+}
+
 /** publish → create campaign → activate → generate ONE invitation → return link. */
 export async function publishAndGetLink(surveyId: string): Promise<PublishResult> {
   if (USE_MOCKS) {
@@ -180,20 +201,39 @@ export async function submitFeedback(
 
 // ---------- dashboard ----------
 
+export function buildDashboardQuery(
+  campaignId?: string,
+  year?: string,
+): string {
+  const query = new URLSearchParams()
+  if (campaignId) query.set('campaignId', campaignId)
+  if (year) query.set('year', year)
+  const value = query.toString()
+  return value ? `?${value}` : ''
+}
+
 export async function getDashboardOverview(
   campaignId?: string,
+  year?: string,
 ): Promise<DashboardOverview> {
-  if (USE_MOCKS) return loadMock<DashboardOverview>('dashboard-overview.json')
-  return apiFetch(`/companies/${COMPANY_ID}/dashboard/overview?campaignId=${campaignId ?? ''}`)
+  if (USE_DASHBOARD_MOCKS) {
+    return loadMock<DashboardOverview>('dashboard-overview.json')
+  }
+  return apiFetch(
+    `/companies/${COMPANY_ID}/dashboard/overview${buildDashboardQuery(campaignId, year)}`,
+  )
 }
 
 export async function getDepartmentDashboard(
   departmentId: string,
   campaignId?: string,
+  year?: string,
 ): Promise<DepartmentDashboard> {
-  if (USE_MOCKS) return loadMock<DepartmentDashboard>('department-dashboard.json')
+  if (USE_DASHBOARD_MOCKS) {
+    return loadMock<DepartmentDashboard>('department-dashboard.json')
+  }
   return apiFetch(
-    `/companies/${COMPANY_ID}/dashboard/departments/${departmentId}?campaignId=${campaignId ?? ''}`,
+    `/companies/${COMPANY_ID}/dashboard/departments/${departmentId}${buildDashboardQuery(campaignId, year)}`,
   )
 }
 

@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState } from 'react'
-import { getDashboardOverview } from '@/lib/api'
-import type { DashboardOverview } from '@/lib/types'
+import { useEffect, useState } from 'react'
+import { getDashboardOverview, listCampaigns } from '@/lib/api'
+import type { Campaign, DashboardOverview } from '@/lib/types'
 import { KpiCards } from '@/components/charts/KpiCards'
 import { DepartmentParticipationChart } from '@/components/charts/DepartmentParticipationChart'
 import { MonthlyFeedbackChart } from '@/components/charts/MonthlyFeedbackChart'
@@ -18,30 +18,45 @@ import { Reveal } from '@/components/motion/Reveal'
 
 export default function DashboardPage() {
   const [data, setData] = useState<DashboardOverview | null>(null)
-  const [year, setYear] = useState<string>('')
+  const [campaigns, setCampaigns] = useState<Campaign[]>([])
+  const [campaignId, setCampaignId] = useState('')
+  const [year, setYear] = useState('')
+  const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    getDashboardOverview().then((d) => {
-      setData(d)
-      // default to the most recent year
-      const years = d.years ?? []
-      setYear(years[years.length - 1] ?? '')
-    })
+    listCampaigns().then(setCampaigns).catch(() => setCampaigns([]))
   }, [])
 
-  const years = data?.years ?? []
-  // Per-year slice overrides the top-level snapshot when available.
-  const view = useMemo(() => {
-    const slice = data?.byYear?.[year]
-    return {
-      sampleSize: slice?.sampleSize ?? data?.sampleSize ?? 0,
-      kpis: (slice?.kpis ?? data?.kpis ?? []).slice(0, 4),
-      sentiment: slice?.sentimentDistribution ?? data?.sentimentDistribution ?? [],
-      feedbackByMonth: slice?.feedbackByMonth ?? data?.feedbackByMonth,
-    }
-  }, [data, year])
+  useEffect(() => {
+    let ignore = false
+    getDashboardOverview(campaignId || undefined, year || undefined)
+      .then((result) => {
+        if (!ignore) {
+          setData(result)
+          setError(null)
+        }
+      })
+      .catch((reason: unknown) => {
+        if (!ignore) {
+          setError(reason instanceof Error ? reason.message : 'Dashboard could not be loaded.')
+        }
+      })
+      .finally(() => {
+        if (!ignore) setLoading(false)
+      })
 
-  if (!data) return <p className="text-muted-foreground">Loading...</p>
+    return () => {
+      ignore = true
+    }
+  }, [campaignId, year])
+
+  if (loading && !data) return <p className="text-muted-foreground">Loading...</p>
+  if (error && !data) return <p className="text-destructive">{error}</p>
+  if (!data) return null
+
+  const years = data.years.map(String)
+  const displayedYear = year || String(data.selectedYear)
 
   return (
     <div className="flex flex-col gap-6">
@@ -54,31 +69,65 @@ export default function DashboardPage() {
             {data.campaign.name}
           </h1>
           <p className="text-muted-foreground">
-            {data.company.name} · {view.sampleSize} responses
-            {year && ` · ${year}`}
+            {data.company.name} · {data.sampleSize} responses
+            {displayedYear && ` · ${displayedYear}`}
           </p>
         </div>
-        {years.length > 0 && (
-          <Select value={year} onValueChange={setYear}>
-            <SelectTrigger className="w-[140px]" aria-label="Select year">
-              <SelectValue placeholder="Year" />
+
+        <div className="flex flex-wrap gap-2">
+          <Select
+            value={campaignId || 'AUTO'}
+            onValueChange={(value) => {
+              setLoading(true)
+              setError(null)
+              setCampaignId(value === 'AUTO' ? '' : value)
+              setYear('')
+            }}
+          >
+            <SelectTrigger className="w-[220px]" aria-label="Select campaign">
+              <SelectValue placeholder="Campaign" />
             </SelectTrigger>
             <SelectContent position="popper" side="bottom" align="end">
-              {years.map((y) => (
-                <SelectItem key={y} value={y}>
-                  {y}
+              <SelectItem value="AUTO">Current campaign</SelectItem>
+              {campaigns.map((campaign) => (
+                <SelectItem key={campaign.id} value={campaign.id}>
+                  {campaign.name}
                 </SelectItem>
               ))}
             </SelectContent>
           </Select>
-        )}
+
+          {years.length > 0 && (
+            <Select
+              value={displayedYear}
+              onValueChange={(value) => {
+                setLoading(true)
+                setError(null)
+                setYear(value)
+              }}
+            >
+              <SelectTrigger className="w-[140px]" aria-label="Select year">
+                <SelectValue placeholder="Year" />
+              </SelectTrigger>
+              <SelectContent position="popper" side="bottom" align="end">
+                {years.map((availableYear) => (
+                  <SelectItem key={availableYear} value={availableYear}>
+                    {availableYear}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+        </div>
       </Reveal>
 
-      <KpiCards kpis={view.kpis} />
+      {error && <p className="text-sm text-destructive">{error}</p>}
+
+      <KpiCards kpis={data.kpis.slice(0, 4)} />
 
       <Reveal variant="up" delay={280} className="grid gap-6 lg:grid-cols-2">
         <DepartmentParticipationChart rows={data.departmentHeatmap} />
-        {view.feedbackByMonth && <MonthlyFeedbackChart data={view.feedbackByMonth} />}
+        {data.feedbackByMonth && <MonthlyFeedbackChart data={data.feedbackByMonth} />}
       </Reveal>
 
       <Reveal variant="up" delay={360} className="grid gap-6 lg:grid-cols-3">
@@ -95,7 +144,11 @@ export default function DashboardPage() {
       </Reveal>
 
       <Reveal variant="up" delay={440}>
-        <DepartmentHeatmap rows={data.departmentHeatmap} />
+        <DepartmentHeatmap
+          rows={data.departmentHeatmap}
+          campaignId={campaignId || undefined}
+          year={year || undefined}
+        />
       </Reveal>
     </div>
   )

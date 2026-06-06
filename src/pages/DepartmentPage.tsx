@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useSearchParams } from 'react-router-dom'
 import { getDepartmentDashboard } from '@/lib/api'
 import type { DepartmentDashboard } from '@/lib/types'
 import { CategoryScoresChart } from '@/components/charts/CategoryScoresChart'
@@ -10,12 +10,33 @@ import { Button } from '@/components/ui/button'
 
 export default function DepartmentPage() {
   const { id = '' } = useParams()
+  const [searchParams] = useSearchParams()
   const [data, setData] = useState<DepartmentDashboard | null>(null)
+  const [error, setError] = useState<string | null>(null)
+  const campaignId = searchParams.get('campaignId') ?? undefined
+  const year = searchParams.get('year') ?? undefined
 
   useEffect(() => {
-    getDepartmentDashboard(id).then(setData)
-  }, [id])
+    let ignore = false
+    getDepartmentDashboard(id, campaignId, year)
+      .then((result) => {
+        if (!ignore) {
+          setData(result)
+          setError(null)
+        }
+      })
+      .catch((reason: unknown) => {
+        if (!ignore) {
+          setError(reason instanceof Error ? reason.message : 'Department could not be loaded.')
+        }
+      })
 
+    return () => {
+      ignore = true
+    }
+  }, [id, campaignId, year])
+
+  if (error) return <p className="text-destructive">{error}</p>
   if (!data) return <p className="text-muted-foreground">Loading...</p>
 
   return (
@@ -57,13 +78,18 @@ export default function DepartmentPage() {
                 <CardTitle>Top Topics</CardTitle>
               </CardHeader>
               <CardContent className="flex flex-col gap-2">
-                {data.topTopics.map((t, i) => (
-                  <div key={i} className="flex items-center justify-between border-b pb-2 last:border-0">
-                    <span>{t.label}</span>
+                {data.topTopics.map((topic, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center justify-between border-b pb-2 last:border-0"
+                  >
+                    <span>{topic.label}</span>
                     <div className="flex gap-2">
-                      <Badge variant="secondary">{t.mentions}×</Badge>
-                      <Badge variant={t.sentiment === 'NEGATIVE' ? 'destructive' : 'outline'}>
-                        {t.sentiment}
+                      <Badge variant="secondary">{topic.mentions}×</Badge>
+                      <Badge
+                        variant={topic.sentiment === 'NEGATIVE' ? 'destructive' : 'outline'}
+                      >
+                        {topic.sentiment}
                       </Badge>
                     </div>
                   </div>
