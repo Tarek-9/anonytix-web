@@ -4,7 +4,7 @@ import type { DashboardOverview } from '@/lib/types'
 import { KpiCards } from '@/components/charts/KpiCards'
 import { SentimentChart } from '@/components/charts/SentimentChart'
 import { MonthlyFeedbackChart } from '@/components/charts/MonthlyFeedbackChart'
-import { SatisfactionTrendChart } from '@/components/charts/SatisfactionTrendChart'
+import { SatisfactionByYearChart } from '@/components/charts/SatisfactionByYearChart'
 import { DepartmentHeatmap } from '@/components/charts/DepartmentHeatmap'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -34,7 +34,9 @@ export default function DashboardPage() {
         {data.feedbackByMonth && <MonthlyFeedbackChart data={data.feedbackByMonth} />}
       </div>
 
-      <SatisfactionTrendChart data={data.satisfactionTrend} />
+      {data.satisfactionByYear && (
+        <SatisfactionByYearChart data={data.satisfactionByYear} />
+      )}
       <DepartmentHeatmap rows={data.departmentHeatmap} />
 
       <Card>

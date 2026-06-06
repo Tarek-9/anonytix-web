@@ -134,6 +134,12 @@ export interface MonthlyFeedback {
   negative: number
 }
 
+// One row per month; keys "2024"/"2025"/... hold that year's satisfaction score.
+export interface SatisfactionYearRow {
+  month: string
+  [year: string]: number | string | null
+}
+
 export interface HeatmapRow {
   departmentId: string
   departmentName: string
@@ -180,6 +186,7 @@ export interface DashboardOverview {
   categoryScores: CategoryScore[]
   satisfactionTrend: TrendPoint[]
   feedbackByMonth?: MonthlyFeedback[]
+  satisfactionByYear?: SatisfactionYearRow[]
   departmentHeatmap: HeatmapRow[]
   topTopics: TopTopic[]
   aiSummary: AiSummary
