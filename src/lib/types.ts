@@ -174,6 +174,12 @@ export interface AiSummary {
   disclaimer: string
 }
 
+export interface AiHighlight {
+  id: string
+  text: string
+  sentiment: Sentiment
+}
+
 export interface RecommendedAction {
   id: string
   title: string
@@ -200,6 +206,7 @@ export interface DashboardOverview {
   departmentHeatmap: HeatmapRow[]
   topTopics: TopTopic[]
   aiSummary: AiSummary
+  aiHighlights?: AiHighlight[]
   recommendedActions: RecommendedAction[]
 }
 

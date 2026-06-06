@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Link, NavLink, useLocation } from "react-router-dom"
-import { IconClipboardText, IconDashboard } from "@tabler/icons-react"
+import { IconClipboardText, IconDashboard, IconSparkles } from "@tabler/icons-react"
 
 import logoFront from "@/assets/logo_icon.png"
 
@@ -15,11 +15,13 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarTrigger,
 } from "@/components/ui/sidebar"
 
 const navMain = [
   { title: "Umfragen", url: "/", icon: IconClipboardText },
   { title: "Dashboard", url: "/dashboard", icon: IconDashboard },
+  { title: "AI-Overview", url: "/ai-overview", icon: IconSparkles },
 ]
 
 const user = {
@@ -32,7 +34,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { pathname } = useLocation()
   return (
     <Sidebar collapsible="offcanvas" {...props}>
-      <SidebarHeader>
+      <SidebarHeader className="relative">
+        <SidebarTrigger className="absolute top-4 right-4 z-10" />
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton

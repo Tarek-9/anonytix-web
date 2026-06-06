@@ -8,6 +8,7 @@ import BuilderPage from '@/pages/BuilderPage.tsx'
 import PublicFormPage from '@/pages/PublicFormPage.tsx'
 import DashboardPage from '@/pages/DashboardPage.tsx'
 import DepartmentPage from '@/pages/DepartmentPage.tsx'
+import AiOverviewPage from '@/pages/AiOverviewPage.tsx'
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
       { path: '/feedback/:token', element: <PublicFormPage /> },
       { path: '/dashboard', element: <DashboardPage /> },
       { path: '/dashboard/departments/:id', element: <DepartmentPage /> },
+      { path: '/ai-overview', element: <AiOverviewPage /> },
     ],
   },
 ])

@@ -731,5 +731,32 @@
         }
       ]
     }
-  }
+  },
+  "aiHighlights": [
+    {
+      "id": "h1",
+      "text": "Gesamtzufriedenheit im Juni leicht gesunken (3,4/5)",
+      "sentiment": "NEGATIVE"
+    },
+    {
+      "id": "h2",
+      "text": "Hohe Arbeitsbelastung im Vertrieb — 38 Nennungen, steigend",
+      "sentiment": "NEGATIVE"
+    },
+    {
+      "id": "h3",
+      "text": "Führungskommunikation schlechter bewertet als im Vormonat",
+      "sentiment": "NEGATIVE"
+    },
+    {
+      "id": "h4",
+      "text": "Teamzusammenhalt bleibt ein stabiler Pluspunkt",
+      "sentiment": "POSITIVE"
+    },
+    {
+      "id": "h5",
+      "text": "Teilnahmequote auf 78 % gestiegen (+6 Punkte)",
+      "sentiment": "POSITIVE"
+    }
+  ]
 }

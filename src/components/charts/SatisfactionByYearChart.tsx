@@ -1,10 +1,12 @@
 import * as React from 'react'
-import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts'
+import { TrendingUp } from 'lucide-react'
+import { CartesianGrid, Line, LineChart, XAxis } from 'recharts'
 import type { SatisfactionYearRow } from '@/lib/types'
 import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
@@ -54,8 +56,8 @@ export function SatisfactionByYearChart({ data }: { data: SatisfactionYearRow[] 
     selectedYear === ALL ? years : years.filter((y) => y === selectedYear)
 
   return (
-    <Card className="py-4 sm:py-0">
-      <CardHeader className="flex flex-col items-stretch gap-3 border-b p-4 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+    <Card>
+      <CardHeader className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex flex-col gap-1">
           <CardTitle>Zufriedenheitstrend</CardTitle>
           <CardDescription>
@@ -76,8 +78,8 @@ export function SatisfactionByYearChart({ data }: { data: SatisfactionYearRow[] 
           </SelectContent>
         </Select>
       </CardHeader>
-      <CardContent className="px-2 sm:p-6">
-        <ChartContainer config={config} className="aspect-auto h-[250px] w-full">
+      <CardContent>
+        <ChartContainer config={config}>
           <LineChart accessibilityLayer data={data} margin={{ left: 12, right: 12 }}>
             <CartesianGrid vertical={false} />
             <XAxis
@@ -85,10 +87,9 @@ export function SatisfactionByYearChart({ data }: { data: SatisfactionYearRow[] 
               tickLine={false}
               axisLine={false}
               tickMargin={8}
-              minTickGap={16}
+              tickFormatter={(value: string) => (value ?? '').slice(0, 3)}
             />
-            <YAxis domain={[0, 5]} width={32} tickLine={false} axisLine={false} />
-            <ChartTooltip content={<ChartTooltipContent className="w-[160px]" />} />
+            <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
             {visibleYears.length > 1 && (
               <ChartLegend content={<ChartLegendContent />} />
             )}
@@ -106,6 +107,18 @@ export function SatisfactionByYearChart({ data }: { data: SatisfactionYearRow[] 
           </LineChart>
         </ChartContainer>
       </CardContent>
+      <CardFooter>
+        <div className="flex w-full items-start gap-2 text-sm">
+          <div className="grid gap-2">
+            <div className="flex items-center gap-2 leading-none font-medium">
+              Skala 1–5 · höher ist besser <TrendingUp className="h-4 w-4" />
+            </div>
+            <div className="flex items-center gap-2 leading-none text-muted-foreground">
+              Durchschnittliche Monatswerte je Jahr
+            </div>
+          </div>
+        </div>
+      </CardFooter>
     </Card>
   )
 }

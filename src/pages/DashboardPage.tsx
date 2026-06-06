@@ -5,9 +5,8 @@ import { KpiCards } from '@/components/charts/KpiCards'
 import { SentimentChart } from '@/components/charts/SentimentChart'
 import { MonthlyFeedbackChart } from '@/components/charts/MonthlyFeedbackChart'
 import { SatisfactionByYearChart } from '@/components/charts/SatisfactionByYearChart'
+import { AiHighlightsCard } from '@/components/charts/AiHighlightsCard'
 import { DepartmentHeatmap } from '@/components/charts/DepartmentHeatmap'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 import {
   Select,
   SelectContent,
@@ -76,42 +75,20 @@ export default function DashboardPage() {
         {view.feedbackByMonth && <MonthlyFeedbackChart data={view.feedbackByMonth} />}
       </div>
 
-      {data.satisfactionByYear && (
-        <SatisfactionByYearChart data={data.satisfactionByYear} />
-      )}
+      <div className="grid gap-6 lg:grid-cols-3">
+        {data.satisfactionByYear && (
+          <div className="lg:col-span-2">
+            <SatisfactionByYearChart data={data.satisfactionByYear} />
+          </div>
+        )}
+        {data.aiHighlights && (
+          <div className="lg:col-span-1">
+            <AiHighlightsCard highlights={data.aiHighlights} />
+          </div>
+        )}
+      </div>
+
       <DepartmentHeatmap rows={data.departmentHeatmap} />
-
-      <Card>
-        <CardHeader>
-          <CardTitle>KI-Zusammenfassung</CardTitle>
-        </CardHeader>
-        <CardContent className="flex flex-col gap-2">
-          <p>{data.aiSummary.summary}</p>
-          <p className="text-xs text-muted-foreground">{data.aiSummary.disclaimer}</p>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>Empfohlene Maßnahmen</CardTitle>
-        </CardHeader>
-        <CardContent className="flex flex-col gap-3">
-          {data.recommendedActions.map((a) => (
-            <div key={a.id} className="flex items-start justify-between gap-4 border-b pb-3 last:border-0">
-              <div>
-                <p className="font-medium">{a.title}</p>
-                <p className="text-sm text-muted-foreground">{a.description}</p>
-              </div>
-              <div className="flex shrink-0 gap-2">
-                <Badge variant={a.priority === 'HIGH' ? 'destructive' : 'secondary'}>
-                  {a.priority}
-                </Badge>
-                <Badge variant="outline">{a.status}</Badge>
-              </div>
-            </div>
-          ))}
-        </CardContent>
-      </Card>
     </div>
   )
 }
