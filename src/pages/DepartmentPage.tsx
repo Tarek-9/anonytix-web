@@ -16,45 +16,45 @@ export default function DepartmentPage() {
     getDepartmentDashboard(id).then(setData)
   }, [id])
 
-  if (!data) return <p className="text-muted-foreground">Lädt …</p>
+  if (!data) return <p className="text-muted-foreground">Loading...</p>
 
   return (
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-semibold">{data.department.name}</h1>
         <Button asChild variant="outline" size="sm">
-          <Link to="/dashboard">Zurück</Link>
+          <Link to="/dashboard">Back</Link>
         </Button>
       </div>
 
       {!data.visible ? (
         <Card>
           <CardContent className="py-10 text-center text-muted-foreground">
-            Nicht genügend Daten für eine anonyme Darstellung
-            {data.sampleSize ? ` (${data.sampleSize} von ${data.minimumGroupSize}).` : '.'}
+            Not enough data for an anonymous view
+            {data.sampleSize ? ` (${data.sampleSize} of ${data.minimumGroupSize}).` : '.'}
           </CardContent>
         </Card>
       ) : (
         <>
           <div className="flex gap-3">
             <Badge variant="secondary">
-              Zufriedenheit {data.overallSatisfaction} / 5
+              Satisfaction {data.overallSatisfaction} / 5
             </Badge>
             <Badge variant="outline">
-              Firmenschnitt {data.companyAverage} / 5
+              Company average {data.companyAverage} / 5
             </Badge>
           </div>
           {data.categoryScores && (
             <CategoryScoresChart
               data={data.categoryScores}
-              title="Kategorien (Abteilung vs. Firma)"
+              title="Categories (department vs. company)"
             />
           )}
           {data.trend && <SatisfactionTrendChart data={data.trend} />}
           {data.topTopics && (
             <Card>
               <CardHeader>
-                <CardTitle>Top-Themen</CardTitle>
+                <CardTitle>Top Topics</CardTitle>
               </CardHeader>
               <CardContent className="flex flex-col gap-2">
                 {data.topTopics.map((t, i) => (

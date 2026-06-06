@@ -6,8 +6,10 @@ import type { FormAnswers, FormAnswerValue } from '@/lib/form-logic'
 import type { PublicForm } from '@/lib/types'
 import { FormRenderer } from '@/components/FormRenderer'
 import { AnonymityPanel } from '@/components/AnonymityPanel'
+import { Reveal } from '@/components/motion/Reveal'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { IconShieldCheck } from '@tabler/icons-react'
 
 export default function PublicFormPage() {
   const { token = '' } = useParams()
@@ -60,14 +62,14 @@ export default function PublicFormPage() {
 
   if (loadError) {
     const messages: Record<string, string> = {
-      INVITATION_NOT_FOUND: 'Dieser Link ist ungültig.',
-      INVITATION_EXPIRED: 'Dieser Link ist abgelaufen.',
-      INVITATION_ALREADY_USED: 'Dieser Link wurde bereits verwendet.',
-      INTERNAL_ERROR: 'Etwas ist schiefgelaufen. Bitte später erneut versuchen.',
+      INVITATION_NOT_FOUND: 'This link is invalid.',
+      INVITATION_EXPIRED: 'This link has expired.',
+      INVITATION_ALREADY_USED: 'This link has already been used.',
+      INTERNAL_ERROR: 'Something went wrong. Please try again later.',
     }
     return (
       <div className="mx-auto max-w-xl px-4 py-12 text-center">
-        <h1 className="text-xl font-semibold">Formular nicht verfügbar</h1>
+        <h1 className="text-xl font-semibold">Form unavailable</h1>
         <p className="mt-2 text-muted-foreground">
           {messages[loadError] ?? messages.INTERNAL_ERROR}
         </p>
@@ -77,24 +79,29 @@ export default function PublicFormPage() {
 
   if (done) {
     return (
-      <div className="mx-auto max-w-xl px-4 py-12 text-center">
-        <h1 className="text-2xl font-semibold">Danke!</h1>
-        <p className="mt-2 text-muted-foreground">
-          Dein Feedback wurde erfolgreich und anonym übermittelt.
-        </p>
+      <div className="mx-auto flex max-w-xl flex-col items-center px-4 py-16 text-center">
+        <div className="success-pop flex size-16 items-center justify-center rounded-full bg-primary/10 text-primary">
+          <IconShieldCheck className="size-8" />
+        </div>
+        <Reveal variant="fade" delay={140}>
+          <h1 className="mt-6 font-display text-2xl font-semibold">Thank you!</h1>
+          <p className="mt-2 text-muted-foreground">
+            Your feedback was submitted successfully and anonymously.
+          </p>
+        </Reveal>
       </div>
     )
   }
 
   if (!form) {
-    return <div className="px-4 py-12 text-center text-muted-foreground">Lädt …</div>
+    return <div className="px-4 py-12 text-center text-muted-foreground">Loading...</div>
   }
 
   return (
-    <div className="mx-auto max-w-2xl px-4 py-8">
+    <Reveal variant="up" className="mx-auto max-w-2xl px-4 py-8">
       <Card>
         <CardHeader>
-          <CardTitle>{form.title}</CardTitle>
+          <CardTitle className="font-display">{form.title}</CardTitle>
           {form.description && (
             <p className="text-sm text-muted-foreground">{form.description}</p>
           )}
@@ -113,10 +120,10 @@ export default function PublicFormPage() {
             disabled={!form.selectedDepartmentId || submitting}
             className="self-start"
           >
-            {submitting ? 'Sendet …' : 'Anonym absenden'}
+            {submitting ? 'Submitting...' : 'Submit anonymously'}
           </Button>
         </CardContent>
       </Card>
-    </div>
+    </Reveal>
   )
 }

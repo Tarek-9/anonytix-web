@@ -59,17 +59,17 @@ export function SatisfactionByYearChart({ data }: { data: SatisfactionYearRow[] 
     <Card>
       <CardHeader className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex flex-col gap-1">
-          <CardTitle>Zufriedenheitstrend</CardTitle>
+          <CardTitle>Satisfaction Trend</CardTitle>
           <CardDescription>
-            Durchschnittliche Zufriedenheit pro Monat im Jahresvergleich
+            Average monthly satisfaction compared across years
           </CardDescription>
         </div>
         <Select value={selectedYear} onValueChange={setSelectedYear}>
-          <SelectTrigger className="w-[160px] sm:ml-auto" aria-label="Jahr auswählen">
-            <SelectValue placeholder="Jahr" />
+          <SelectTrigger className="w-[160px] sm:ml-auto" aria-label="Select year">
+            <SelectValue placeholder="Year" />
           </SelectTrigger>
           <SelectContent position="popper" side="bottom" align="end">
-            <SelectItem value={ALL}>Alle Jahre</SelectItem>
+            <SelectItem value={ALL}>All years</SelectItem>
             {years.map((y) => (
               <SelectItem key={y} value={y}>
                 {y}
@@ -111,10 +111,10 @@ export function SatisfactionByYearChart({ data }: { data: SatisfactionYearRow[] 
         <div className="flex w-full items-start gap-2 text-sm">
           <div className="grid gap-2">
             <div className="flex items-center gap-2 leading-none font-medium">
-              Skala 1–5 · höher ist besser <TrendingUp className="h-4 w-4" />
+              Scale 1–5 · higher is better <TrendingUp className="h-4 w-4" />
             </div>
             <div className="flex items-center gap-2 leading-none text-muted-foreground">
-              Durchschnittliche Monatswerte je Jahr
+              Average monthly values by year
             </div>
           </div>
         </div>

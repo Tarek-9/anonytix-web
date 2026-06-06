@@ -1,7 +1,7 @@
 {
   "department": {
     "id": "ac38af63-dc5a-416e-b5d7-c237535ec37b",
-    "name": "Softwareentwicklung"
+    "name": "Software Development"
   },
   "campaignId": "93b6108f-f005-4f4b-8ce9-952fa0a7ddc4",
   "sampleSize": 34,
@@ -12,31 +12,31 @@
   "categoryScores": [
     {
       "category": "TEAMWORK",
-      "label": "Teamzusammenhalt",
+      "label": "Team Cohesion",
       "score": 4.4,
       "companyScore": 4.3
     },
     {
       "category": "COMMUNICATION",
-      "label": "Kommunikation",
+      "label": "Communication",
       "score": 3.5,
       "companyScore": 3.1
     },
     {
       "category": "LEADERSHIP",
-      "label": "Führung",
+      "label": "Leadership",
       "score": 3.2,
       "companyScore": 2.8
     },
     {
       "category": "WORKLOAD",
-      "label": "Arbeitsbelastung",
+      "label": "Workload",
       "score": 2.3,
       "companyScore": 2.1
     },
     {
       "category": "PROCESSES",
-      "label": "Entwicklungsprozesse",
+      "label": "Development Processes",
       "score": 3.0,
       "companyScore": null
     }
@@ -61,19 +61,19 @@
   ],
   "topTopics": [
     {
-      "label": "Zu viele parallele Projekte",
+      "label": "Too Many Parallel Projects",
       "mentions": 12,
       "sentiment": "NEGATIVE",
       "priority": "HIGH"
     },
     {
-      "label": "Gute Unterstützung im Team",
+      "label": "Strong Team Support",
       "mentions": 10,
       "sentiment": "POSITIVE",
       "priority": "LOW"
     },
     {
-      "label": "Unklare technische Prioritäten",
+      "label": "Unclear Technical Priorities",
       "mentions": 8,
       "sentiment": "NEGATIVE",
       "priority": "MEDIUM"

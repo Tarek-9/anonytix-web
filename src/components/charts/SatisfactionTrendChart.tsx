@@ -9,14 +9,14 @@ import {
 } from '@/components/ui/chart'
 
 const config = {
-  score: { label: 'Zufriedenheit', color: 'var(--chart-1)' },
+  score: { label: 'Satisfaction', color: 'var(--chart-1)' },
 } satisfies ChartConfig
 
 export function SatisfactionTrendChart({ data }: { data: TrendPoint[] }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Zufriedenheitstrend</CardTitle>
+        <CardTitle>Satisfaction Trend</CardTitle>
       </CardHeader>
       <CardContent>
         <ChartContainer config={config} className="max-h-72 w-full">

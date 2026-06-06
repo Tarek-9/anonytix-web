@@ -1,9 +1,29 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import {
+  DndContext,
+  KeyboardSensor,
+  PointerSensor,
+  closestCenter,
+  useSensor,
+  useSensors,
+  type DragEndEvent,
+} from '@dnd-kit/core'
+import {
+  restrictToParentElement,
+  restrictToVerticalAxis,
+} from '@dnd-kit/modifiers'
+import {
+  SortableContext,
+  arrayMove,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable'
 import { getSurvey, getSurveyTemplate, publishAndGetLink, saveSurvey } from '@/lib/api'
 import type { PublicForm, Question, SurveyWithQuestions } from '@/lib/types'
 import { QuestionEditor } from '@/components/QuestionEditor'
 import { FormRenderer } from '@/components/FormRenderer'
+import { Reveal } from '@/components/motion/Reveal'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 
@@ -12,7 +32,7 @@ function instantiateTemplate(template: SurveyWithQuestions): SurveyWithQuestions
   return {
     ...template,
     id: crypto.randomUUID(),
-    title: 'Neue Umfrage',
+    title: 'New survey',
     status: 'DRAFT',
     createdAt: new Date().toISOString(),
     questions: template.questions.map((q) => ({
@@ -54,12 +74,30 @@ export default function BuilderPage() {
     getSurvey(id).then(setSurvey)
   }, [id])
 
+  const sensors = useSensors(
+    // Small threshold so clicks on fields inside the card don't start a drag.
+    useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
+  )
+
   if (!survey) {
-    return <div className="text-muted-foreground">Lädt …</div>
+    return <div className="text-muted-foreground">Loading...</div>
   }
 
   function update(next: SurveyWithQuestions) {
     setSurvey(next)
+  }
+
+  function handleDragEnd(event: DragEndEvent) {
+    const { active, over } = event
+    if (!survey || !over || active.id === over.id) return
+    const oldIndex = survey.questions.findIndex((q) => q.id === active.id)
+    const newIndex = survey.questions.findIndex((q) => q.id === over.id)
+    if (oldIndex === -1 || newIndex === -1) return
+    const reordered = arrayMove(survey.questions, oldIndex, newIndex).map(
+      (q, i) => ({ ...q, position: i + 1 }),
+    )
+    update({ ...survey, questions: reordered })
   }
 
   const previewForm: PublicForm = {
@@ -69,17 +107,17 @@ export default function BuilderPage() {
     description: survey.description,
     surveyType: survey.type,
     expiresAt: '',
-    departments: [{ id: 'preview-dept', name: 'Vorschau-Abteilung' }],
+    departments: [{ id: 'preview-dept', name: 'Preview department' }],
     selectedDepartmentId: 'preview-dept',
     questions: survey.questions,
   }
 
   async function handlePublish() {
     if (!survey) return
-    // persist as a published survey so it shows up on the Umfragen list
+    // Persist as a published survey so it shows up on the Surveys list.
     await saveSurvey({ ...survey, status: 'PUBLISHED' })
     const result = await publishAndGetLink(survey.id)
-    // hand off to the Umfragen list, which shows the link overlay
+    // Hand off to the Surveys list, which shows the link overlay.
     navigate('/', { state: { publishedUrl: result.url } })
   }
 
@@ -91,24 +129,41 @@ export default function BuilderPage() {
           onChange={(e) => update({ ...survey, title: e.target.value })}
           className="text-lg font-semibold"
         />
-        {survey.questions.map((q, i) => (
-          <QuestionEditor
-            key={q.id}
-            question={q}
-            onChange={(next) =>
-              update({
-                ...survey,
-                questions: survey.questions.map((x, j) => (j === i ? next : x)),
-              })
-            }
-            onDelete={() =>
-              update({
-                ...survey,
-                questions: survey.questions.filter((_, j) => j !== i),
-              })
-            }
-          />
-        ))}
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          modifiers={[restrictToVerticalAxis, restrictToParentElement]}
+          onDragEnd={handleDragEnd}
+        >
+          <SortableContext
+            items={survey.questions.map((q) => q.id)}
+            strategy={verticalListSortingStrategy}
+          >
+            <div className="flex flex-col gap-4">
+              {survey.questions.map((q, i) => (
+                <Reveal key={q.id} index={i} step={45}>
+                  <QuestionEditor
+                    question={q}
+                    onChange={(next) =>
+                      update({
+                        ...survey,
+                        questions: survey.questions.map((x, j) =>
+                          j === i ? next : x,
+                        ),
+                      })
+                    }
+                    onDelete={() =>
+                      update({
+                        ...survey,
+                        questions: survey.questions.filter((_, j) => j !== i),
+                      })
+                    }
+                  />
+                </Reveal>
+              ))}
+            </div>
+          </SortableContext>
+        </DndContext>
         <div className="flex gap-2">
           <Button
             variant="outline"
@@ -119,14 +174,14 @@ export default function BuilderPage() {
               })
             }
           >
-            Frage hinzufügen
+            Add question
           </Button>
-          <Button onClick={handlePublish}>Veröffentlichen und Link erhalten</Button>
+          <Button onClick={handlePublish}>Publish and get link</Button>
         </div>
       </section>
 
       <section className="rounded-lg border bg-muted/30 p-4">
-        <h2 className="mb-4 text-sm font-medium text-muted-foreground">Live-Vorschau</h2>
+        <h2 className="mb-4 text-sm font-medium text-muted-foreground">Live preview</h2>
         <FormRenderer
           form={previewForm}
           answers={{}}

@@ -11,15 +11,15 @@ import {
 } from '@/components/ui/chart'
 
 const config = {
-  positive: { label: 'Positiv', color: '#2563eb' },
-  negative: { label: 'Negativ', color: '#dc2626' },
+  positive: { label: 'Positive', color: '#2563eb' },
+  negative: { label: 'Negative', color: '#dc2626' },
 } satisfies ChartConfig
 
 export function MonthlyFeedbackChart({ data }: { data: MonthlyFeedback[] }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Feedback pro Monat</CardTitle>
+        <CardTitle>Feedback by Month</CardTitle>
       </CardHeader>
       <CardContent>
         <ChartContainer config={config} className="max-h-72 w-full">

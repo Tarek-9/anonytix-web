@@ -44,7 +44,7 @@ function readSurveys(): SurveyWithQuestions[] {
   return raw ? (JSON.parse(raw) as SurveyWithQuestions[]) : []
 }
 
-/** Upsert a survey by id, so it shows up on the Umfragen list. */
+/** Upsert a survey by id, so it shows up on the Surveys list. */
 export function saveSurvey(survey: SurveyWithQuestions): void {
   const items = readSurveys()
   const idx = items.findIndex((s) => s.id === survey.id)

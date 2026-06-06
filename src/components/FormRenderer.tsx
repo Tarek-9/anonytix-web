@@ -12,6 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { Reveal } from '@/components/motion/Reveal'
 import { cn } from '@/lib/utils'
 
 interface FormRendererProps {
@@ -69,7 +70,7 @@ function QuestionField({
             size="sm"
             onClick={() => onChange(true)}
           >
-            Ja
+            Yes
           </Button>
           <Button
             type="button"
@@ -77,7 +78,7 @@ function QuestionField({
             size="sm"
             onClick={() => onChange(false)}
           >
-            Nein
+            No
           </Button>
         </div>
       )
@@ -132,14 +133,14 @@ export function FormRenderer({
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-2">
         <Label>
-          Abteilung <span className="text-destructive">*</span>
+          Department <span className="text-destructive">*</span>
         </Label>
         <Select
           value={form.selectedDepartmentId ?? ''}
           onValueChange={onDepartmentChange}
         >
           <SelectTrigger className="max-w-sm">
-            <SelectValue placeholder="Abteilung auswählen" />
+            <SelectValue placeholder="Select a department" />
           </SelectTrigger>
           <SelectContent>
             {form.departments.map((d) => (
@@ -151,26 +152,30 @@ export function FormRenderer({
         </Select>
       </div>
 
-      {form.selectedDepartmentId &&
-        form.questions.map((q) => (
-          <div key={q.id} className="flex flex-col gap-2">
-            <Label className={cn(errors[q.id] && 'text-destructive')}>
-              {q.text}
-              {q.required && <span className="text-destructive"> *</span>}
-            </Label>
-            {q.helpText && (
-              <p className="text-sm text-muted-foreground">{q.helpText}</p>
-            )}
-            <QuestionField
-              question={q}
-              value={answers[q.id]}
-              onChange={(v) => onAnswerChange(q.id, v)}
-            />
-            {errors[q.id] && (
-              <p className="text-sm text-destructive">{errors[q.id]}</p>
-            )}
-          </div>
-        ))}
+      {form.selectedDepartmentId && (
+        // key by department: switching departments calmly re-animates the questions.
+        <div key={form.selectedDepartmentId} className="flex flex-col gap-6">
+          {form.questions.map((q, i) => (
+            <Reveal key={q.id} index={i} step={80} className="flex flex-col gap-2">
+              <Label className={cn(errors[q.id] && 'text-destructive')}>
+                {q.text}
+                {q.required && <span className="text-destructive"> *</span>}
+              </Label>
+              {q.helpText && (
+                <p className="text-sm text-muted-foreground">{q.helpText}</p>
+              )}
+              <QuestionField
+                question={q}
+                value={answers[q.id]}
+                onChange={(v) => onAnswerChange(q.id, v)}
+              />
+              {errors[q.id] && (
+                <p className="text-sm text-destructive">{errors[q.id]}</p>
+              )}
+            </Reveal>
+          ))}
+        </div>
+      )}
     </div>
   )
 }
