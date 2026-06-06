@@ -3,7 +3,7 @@ import { getDashboardOverview } from '@/lib/api'
 import type { DashboardOverview } from '@/lib/types'
 import { KpiCards } from '@/components/charts/KpiCards'
 import { SentimentChart } from '@/components/charts/SentimentChart'
-import { CategoryScoresChart } from '@/components/charts/CategoryScoresChart'
+import { MonthlyFeedbackChart } from '@/components/charts/MonthlyFeedbackChart'
 import { SatisfactionTrendChart } from '@/components/charts/SatisfactionTrendChart'
 import { DepartmentHeatmap } from '@/components/charts/DepartmentHeatmap'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -31,7 +31,7 @@ export default function DashboardPage() {
 
       <div className="grid gap-6 lg:grid-cols-2">
         <SentimentChart data={data.sentimentDistribution} />
-        <CategoryScoresChart data={data.categoryScores} />
+        {data.feedbackByMonth && <MonthlyFeedbackChart data={data.feedbackByMonth} />}
       </div>
 
       <SatisfactionTrendChart data={data.satisfactionTrend} />

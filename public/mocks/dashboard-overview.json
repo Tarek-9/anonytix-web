@@ -264,5 +264,43 @@
       "status": "IN_PROGRESS",
       "source": "AI"
     }
+  ],
+  "feedbackByMonth": [
+    {
+      "period": "2026-01",
+      "label": "Januar",
+      "positive": 58,
+      "negative": 30
+    },
+    {
+      "period": "2026-02",
+      "label": "Februar",
+      "positive": 60,
+      "negative": 33
+    },
+    {
+      "period": "2026-03",
+      "label": "März",
+      "positive": 59,
+      "negative": 38
+    },
+    {
+      "period": "2026-04",
+      "label": "April",
+      "positive": 60,
+      "negative": 42
+    },
+    {
+      "period": "2026-05",
+      "label": "Mai",
+      "positive": 70,
+      "negative": 35
+    },
+    {
+      "period": "2026-06",
+      "label": "Juni",
+      "positive": 66,
+      "negative": 45
+    }
   ]
 }

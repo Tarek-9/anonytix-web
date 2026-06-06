@@ -127,6 +127,13 @@ export interface TrendPoint {
   sampleSize?: number
 }
 
+export interface MonthlyFeedback {
+  period: string
+  label: string
+  positive: number
+  negative: number
+}
+
 export interface HeatmapRow {
   departmentId: string
   departmentName: string
@@ -172,6 +179,7 @@ export interface DashboardOverview {
   sentimentDistribution: SentimentSlice[]
   categoryScores: CategoryScore[]
   satisfactionTrend: TrendPoint[]
+  feedbackByMonth?: MonthlyFeedback[]
   departmentHeatmap: HeatmapRow[]
   topTopics: TopTopic[]
   aiSummary: AiSummary
