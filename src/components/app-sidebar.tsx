@@ -2,6 +2,8 @@ import * as React from "react"
 import { Link, NavLink, useLocation } from "react-router-dom"
 import { IconClipboardText, IconDashboard } from "@tabler/icons-react"
 
+import logoFront from "@/assets/logo_front.png"
+
 import { NavUser } from "@/components/nav-user"
 import {
   Sidebar,
@@ -38,8 +40,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               className="data-[slot=sidebar-menu-button]:p-1.5!"
             >
               <Link to="/">
-                <img src="/logo.svg" alt="Anonytix" className="size-5!" />
-                <span className="text-base font-semibold">Anonytix</span>
+                <img
+                  src={logoFront}
+                  alt="Anonytix"
+                  className="h-6 w-auto object-contain dark:invert"
+                />
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
