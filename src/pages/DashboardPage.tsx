@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { getDashboardOverview } from '@/lib/api'
 import type { DashboardOverview } from '@/lib/types'
 import { KpiCards } from '@/components/charts/KpiCards'
@@ -8,34 +8,76 @@ import { SatisfactionByYearChart } from '@/components/charts/SatisfactionByYearC
 import { DepartmentHeatmap } from '@/components/charts/DepartmentHeatmap'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 
 export default function DashboardPage() {
   const [data, setData] = useState<DashboardOverview | null>(null)
+  const [year, setYear] = useState<string>('')
 
   useEffect(() => {
-    getDashboardOverview().then(setData)
+    getDashboardOverview().then((d) => {
+      setData(d)
+      // default to the most recent year
+      const years = d.years ?? []
+      setYear(years[years.length - 1] ?? '')
+    })
   }, [])
+
+  const years = data?.years ?? []
+  // Per-year slice overrides the top-level snapshot when available.
+  const view = useMemo(() => {
+    const slice = data?.byYear?.[year]
+    return {
+      sampleSize: slice?.sampleSize ?? data?.sampleSize ?? 0,
+      kpis: (slice?.kpis ?? data?.kpis ?? []).slice(0, 4),
+      sentiment: slice?.sentimentDistribution ?? data?.sentimentDistribution ?? [],
+      feedbackByMonth: slice?.feedbackByMonth ?? data?.feedbackByMonth,
+    }
+  }, [data, year])
 
   if (!data) return <p className="text-muted-foreground">Lädt …</p>
 
   return (
     <div className="flex flex-col gap-6">
-      <div>
-        <h1 className="text-2xl font-semibold">{data.campaign.name}</h1>
-        <p className="text-muted-foreground">
-          {data.company.name} · {data.sampleSize} Antworten
-        </p>
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h1 className="text-2xl font-semibold">{data.campaign.name}</h1>
+          <p className="text-muted-foreground">
+            {data.company.name} · {view.sampleSize} Antworten
+            {year && ` · ${year}`}
+          </p>
+        </div>
+        {years.length > 0 && (
+          <Select value={year} onValueChange={setYear}>
+            <SelectTrigger className="w-[140px]" aria-label="Jahr auswählen">
+              <SelectValue placeholder="Jahr" />
+            </SelectTrigger>
+            <SelectContent align="end">
+              {years.map((y) => (
+                <SelectItem key={y} value={y}>
+                  {y}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        )}
       </div>
 
-      <KpiCards kpis={data.kpis.slice(0, 4)} />
+      <KpiCards kpis={view.kpis} />
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <SentimentChart data={data.sentimentDistribution} />
-        {data.feedbackByMonth && <MonthlyFeedbackChart data={data.feedbackByMonth} />}
+        <SentimentChart data={view.sentiment} />
+        {view.feedbackByMonth && <MonthlyFeedbackChart data={view.feedbackByMonth} />}
       </div>
 
-      {data.satisfactionByYear && (
-        <SatisfactionByYearChart data={data.satisfactionByYear} />
+      {data.satisfactionByYear && year && (
+        <SatisfactionByYearChart data={data.satisfactionByYear} year={year} />
       )}
       <DepartmentHeatmap rows={data.departmentHeatmap} />
 

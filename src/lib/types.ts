@@ -140,6 +140,14 @@ export interface SatisfactionYearRow {
   [year: string]: number | string | null
 }
 
+// Per-year slice of the dashboard, selectable via the year dropdown.
+export interface YearOverview {
+  sampleSize: number
+  kpis: Kpi[]
+  sentimentDistribution: SentimentSlice[]
+  feedbackByMonth: MonthlyFeedback[]
+}
+
 export interface HeatmapRow {
   departmentId: string
   departmentName: string
@@ -187,6 +195,8 @@ export interface DashboardOverview {
   satisfactionTrend: TrendPoint[]
   feedbackByMonth?: MonthlyFeedback[]
   satisfactionByYear?: SatisfactionYearRow[]
+  years?: string[]
+  byYear?: Record<string, YearOverview>
   departmentHeatmap: HeatmapRow[]
   topTopics: TopTopic[]
   aiSummary: AiSummary
